@@ -1,0 +1,10 @@
+(Documents) khouripa@localadmins-MBP dbase % sqlite3
+SQLite version 3.37.0 2021-12-09 01:34:53
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> .open triya_data.sqlite
+sqlite> .tables
+coach    member   page     program
+sqlite> .quit
+(Documents) khouripa@localadmins-MBP dbase %
