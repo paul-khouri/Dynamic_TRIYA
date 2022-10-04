@@ -1,0 +1,113 @@
+:root {
+    --main-bg: rgb(197, 197, 197);
+    --main-bg-color: rgb(74,134,190);
+    --main-nav-text:rgb(255,255,255);
+    --main-nav-bg: rgb(237,46,46);
+    --main-nav-hover: rgb(161, 20, 20);
+    --main-box-bg: rgb(237,46,46);
+
+}
+body{
+    font-size: 100%;
+    background-color: var(--main-bg)
+}
+.bg-main{
+    background-color: var(--main-bg-color)
+}
+.bg-nav{
+    background-color: var(--main-nav-bg);
+}
+.nav-link, .nav-link:hover{
+    color: var(--main-nav-text);
+    font-size: 1.5em;
+}
+
+
+.nav-item:hover{
+    background-color:var(--main-nav-hover);
+
+}
+.container-bg{
+    background-color: var(--main-box-bg);
+}
+.quote-font{
+    font-size: 2em;
+    color : white;
+    font-style: italic;
+    padding:0em 2em;
+}
+h2{
+    font-size: 3em;
+    color: white;
+    text-align: center;
+    margin-bottom: 1em;
+}
+.main-para{
+    font-size: 2em;
+    color: white;
+}
+.main-para-sm{
+    font-size: 1.5em;
+    color: var( --main-nav-text);
+}
+/*---- cards --- */
+.card-border{
+    border-bottom: 20px solid var(--main-bg-color) ;
+    border-top: 20px solid var(--main-bg-color) ;
+}
+
+.card{
+    min-height: 37em;
+}
+
+.btn-cls{
+    border: 0px solid pink;
+    background-color: rgba(0,0,0,0);
+    width:5em;
+    height:5em;
+    box-sizing: border-box;
+    color: var(--main-bg-color);
+}
+
+/*---- table --- */
+/*---- form --- */
+.table{
+    color:white;
+    font-size: 1.5em;
+}
+/*---- form --- */
+label{
+    color: white;
+    margin: 1em 0;
+    font-size: 1.5em;
+}
+.form-check-input{
+    font-size: 1.5em;
+}
+
+/*---- favs --- */
+.fa {
+    padding: 15px;
+    font-size: 40px;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+}
+.fa:hover {
+    background: #668fea;
+    color: white;
+}
+.fa-facebook, .fa-youtube, .fa-instagram, .fa-twitter, .fa-snapchat-ghost{
+    background: #3B5998;
+    color: white;
+}
+/*---- screen --- */
+@media only screen and (max-width: 767px) {
+    /* --reverse flex for images on the left --- */
+    .reverse {
+        flex-direction: column-reverse;
+    }
+}

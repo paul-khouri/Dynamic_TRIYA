@@ -1,0 +1,121 @@
+{% extends "main_template.html" %}
+
+{% block title %}
+TRIYA Programs
+{% endblock %}
+
+{% block content %}
+<!-- content box -->
+<div class="container-lg container-bg my-2 p-5 ">
+    <div class="row align-items-center">
+        <div class="col-md-6 ">
+            <h2>Learn to Sail</h2>
+                <p class="main-para">This is on weekdays from 4pm until 8pm</p>
+                <p class="main-para-sm">Focuses on the basics of sailing learning how to tack, gybe, position in the boat and rigging.
+                Currently this runs everyday after school apart from a Wednesday and is perfect for gaining
+                confidence in and around a 420 boat. If your sailor has raced another type of boat before
+                or are new to sailing this is the course for them.</p>
+        </div>
+        <div class="col-md-6"><img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='images/set_up_opt.jpg' ) }}" alt=""></div>
+    </div>
+</div>
+<!-- content box -->
+<div class="container-lg container-bg my-2 p-5 ">
+    <div class="row align-items-center reverse">
+        <div class="col-md-6 ">
+            <h2>Teams Sailing</h2>
+            <p class="main-para">Short course sailing</p>
+            <p class="main-para-sm">This is for more experienced sailors who are interested in tactics, teams
+                racing consists of 3 boats (2 people per boat) per team and two teams,
+                they complete in a short course race(less than 15 minutes long).
+                The team that wins is the one that gets the most amount of boats over the line first,
+                TRIYA is aiming to have 3 teams compete in the regionals, 1 from Wellington College,
+                1 open team and 1 from Scots College.</p>
+        </div>
+        <div class="col-md-6 order-first"><img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='images/ramp_late.jpg' ) }}" alt=""></div>
+    </div>
+</div>
+<!-- content box -->
+<div class="container-lg container-bg my-2 p-5 ">
+    <div class="row align-items-center">
+        <div class="col-md-6 ">
+            <h2>Fleet Racing</h2>
+            <p class="main-para">Trapezing and kiting</p>
+            <p class="main-para-sm">This is for sailors aiming to compete in Nationals in 2023 who are
+                graduates of one of the sailing programs offered, each boats consists of a skipper
+                and a crew. The crew will learn how to trapeze and mange a kite, and the skipper will
+                be in charge of steering and controls to effect the main sail.
+                Fleet racing sails on a Saturday with training in the morning and racing in the afternoon.</p>
+        </div>
+        <div class="col-md-6"><img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='images/fleet_racing.jpg' ) }}" alt=""></div>
+    </div>
+</div>
+<!-- course fee table -->
+<div class="container-lg container-bg my-2 p-5 ">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col" class="text-navblue">Costs</th>
+            <th scope="col" class="text-navblue">Learn to Sail</th>
+            <th scope="col" class="text-navblue">Teams Racing</th>
+            <th scope="col" class="text-navblue">Fleet Racing</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row" class="text-navblue">Coaching fee</th>
+            <td>$190</td>
+            <td>$170</td>
+            <td>$300</td>
+        </tr>
+        <tr>
+            <th scope="row" class="text-navblue">Boat hire</th>
+            <td>none</td>
+            <td>none</td>
+            <td>$125</td>
+        </tr>
+        <tr>
+            <th scope="row" class="text-navblue">Total</th>
+            <td>$190</td>
+            <td>$170</td>
+            <td>$425</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- contact form for course -->
+<div class="container-lg container-bg my-2 px-5 pb-5 ">
+    <form id="contactform">
+        <div class="row">
+            <div class="col">
+                <label for="sailorfname">Sailor's First Name</label>
+                <input type="text" id="sailorfname" class="form-control " placeholder="First name">
+            </div>
+            <div class="col">
+                <label for="sailorlname">Sailor's Last Name</label>
+                <input type="text" id="sailorlname" class="form-control " placeholder="Last name">
+            </div>
+        </div>
+        <div class="form-group">
+
+            <label for="email" >Contact Email Address</label>
+
+            <input type="email" id="email" class="form-control"  placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+            <label for="selectprogram" >Please Select a Program</label>
+            <select class="form-control" id="selectprogram">
+                <option>Learn to Sail (one term)</option>
+                <option>Teams Racing (one term)</option>
+                <option>Fleet Racing (one term with boat charter)</option>
+            </select>
+            <p></p>
+        </div>
+        <div class = "form-group text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "main_template.html" %}
+
+{% block title %}
+TRIYA home
+{% endblock %}
+
+{% block content %}
+<!-- quote -->
+<div class="container-lg container-bg my-5 p-3">
+    <p class="quote-font">"I come from the 49ers, where there is a high error rate in the sailing but the best sailor still wins,
+        and that’s why I’m attracted to these kind of boats."</p>
+    <p class="quote-font"> Warren - 420 champion</p>
+</div>
+<!-- content boxes -->
+<div class="container-lg container-bg my-5 p-5 ">
+    <div class="row align-items-center">
+        <div class="col-md-6 ">
+            <h2>Who are we?</h2>
+            <p class="main-para">  TRIYA’s aim is to make sailing accessible to all school age students to encourage
+                a love for the water and sailing.
+                We run programs from beginner levels all the way to national champions.</p>
+        </div>
+        <div class="col-md-6"><img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='images/roll_no_wind.jpg') }}" alt=""></div>
+    </div>
+</div>
+<div class="container-lg container-bg my-5 p-5 ">
+        <div class="row align-items-center reverse">
+            <div class="col-md-6 ">
+                <h2>420 Sailing</h2>
+                <p class="main-para">
+                    TRIYA’s aim is to make sailing accessible to all school age students to
+                    encourage a love for the water and sailing.
+                    We run programs from beginner levels all the way to national champions. .</p>
+            </div>
+            <div class="col-md-6 order-first"><img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='images/inboat_upwind.jpg' ) }}" alt=""></div>
+        </div>
+    </div>
+<!-- cards -->
+<div class="container">
+    <div class="container-bg my-5 p-3" id="coaches"> <h2 class="m-0">Our Coaches</h2></div>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="30000">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card container-bg card-border" >
+                            <img src="{{ url_for('static', filename='images/card_locky.jpg' ) }}" class="card-img-top rounded-circle px-5 pt-3 " alt="Sailor in choppy water">
+                            <div class="card-body">
+                                <h2 class="m-0">Locky</h2>
+                                <p class="main-para-sm text-center">Lockie coaches all programs with a focus on fleet racing</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card container-bg card-border" >
+                            <img src="{{ url_for('static', filename='images/card_finn.jpg' ) }}" class="card-img-top rounded-circle px-5 pt-3 " alt="Sailor in choppy water">
+                            <div class="card-body">
+                                <h2 class="m-0">Finn</h2>
+                                <p class="main-para-sm text-center">
+                                    Finn coaches fleet racing and has attended Nationals and Worlds himself.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card container-bg card-border" >
+                            <img src="{{ url_for('static', filename='images/card_warren.jpg' ) }}" class="card-img-top rounded-circle px-5 pt-3 " alt="Sailor in choppy water">
+                            <div class="card-body">
+                                <h2 class="m-0">Warren</h2>
+                                <p class="main-para-sm text-center">Our TRIYA manager,
+                                    you will often find him helping out with programs and repairing boats</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="30000">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card container-bg card-border" >
+                            <img src="{{ url_for('static', filename='images/card_helena.jpg' ) }}" class="card-img-top rounded-circle px-5 pt-3" alt="Sailor in choppy water">
+                            <div class="card-body">
+                                <h2 class="m-0">Helena</h2>
+                                <p class="main-para-sm text-center">Helena runs girls night and learn to sail,
+                                    with a passion for introducing people to sailing</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card container-bg card-border" >
+                            <img src="{{ url_for('static', filename='images/card_darby.jpg' ) }}" class="card-img-top rounded-circle px-5 pt-3 " alt="Sailor in choppy water">
+                            <div class="card-body">
+                                <h2 class="m-0">Darby</h2>
+                                <p class="main-para-sm text-center">Darby coaches team racing and is passionate
+                                    about introducing teams racing to others</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card container-bg card-border" >
+                            <img src="{{ url_for('static', filename='images/card_bri.jpg' ) }}" class="card-img-top rounded-circle px-5 pt-3 " alt="Sailor in choppy water">
+                            <div class="card-body">
+                                <h2 class="m-0">Bri</h2>
+                                <p class="main-para-sm text-center">Bri coaches team and learn to sail, as a referee she
+                                    knows the team racing scene well</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<div class="text-center my-3">
+        <button class="btn-cls  d-inline-block" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="fa fa-arrow-left" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="btn-cls  d-inline-block" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="fa fa-arrow-right" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+</div>
+
+    </div>
+</div>
+{% endblock %}

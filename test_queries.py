@@ -22,6 +22,9 @@ def get_sqlite_schema(p):
     for x in result:
         print(x)
 
+def get_page_one():
+    return None
+
 
 if __name__ == "__main__":
     db_path = 'dbase/triya_data.sqlite'
