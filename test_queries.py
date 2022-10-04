@@ -22,12 +22,27 @@ def get_sqlite_schema(p):
     for x in result:
         print(x)
 
-def get_page_one():
-    return None
+def get_page_one(p):
+    sql="select header, content, image from page where pagenumber = 1;"
+    result = run_search_query(sql,p)
+    return result
+
+def get_programs(p):
+    sql="select name, subtitle, description, coachingfee, boathire, coachingfee+boathire as 'total', image from program;"
+    result = run_search_query(sql,p)
+    return result
 
 
 if __name__ == "__main__":
     db_path = 'dbase/triya_data.sqlite'
     #get_master_data(db_path)
-    get_sqlite_schema(db_path)
+    #get_sqlite_schema(db_path)
+    program_data = get_programs(db_path)
+    for x in program_data:
+        print(x.keys())
+        print(x['total'])
+
+
+
+
     print()

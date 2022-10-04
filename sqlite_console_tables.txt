@@ -1,0 +1,56 @@
+(Documents) khouripa@localadmins-MacBook-Pro dbase % sqlite3
+SQLite version 3.37.0 2021-12-09 01:34:53
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> .open triya_data.sqlite
+sqlite> .tables
+coach    member   page     program
+sqlite> pragma table_info(program)
+   ...> ;
+0|id|INTEGER|1||1
+1|name|TEXT|1||0
+2|subtitle|TEXT|1||0
+3|description|TEXT|1||0
+4|coachingfee|REAL|1||0
+5|boathire|REAL|1||0
+6|image|TEXT|1||0
+7|updated_at|date|0||0
+sqlite> select * from sqlite_schema;
+table|sqlite_sequence|sqlite_sequence|3|CREATE TABLE sqlite_sequence(name,seq)
+table|page|page|4|CREATE TABLE page(
+    id integer primary key autoincrement not null,
+    header text not null,
+    content text not null,
+    image text not null,
+    pagenumber integer not null,
+    updated_at date
+)
+table|member|member|5|CREATE TABLE member(
+    id integer primary key autoincrement not null,
+    firstname text not null,
+    secondname text not null,
+    phone text not null,
+    email text not null,
+    streetaddress text not null,
+    suburb text not null,
+    updated_at date
+)
+table|coach|coach|6|CREATE TABLE coach(
+    id integer not null unique,
+    bio text not null,
+    updated_at date,
+    foreign key (id) references member(id)
+)
+index|sqlite_autoindex_coach_1|coach|7|
+table|program|program|2|CREATE TABLE program(
+    id integer primary key autoincrement not null,
+    name text not null,
+    subtitle text not null,
+    description text not null,
+    coachingfee real not null,
+    boathire real not null,
+    image text not null,
+    updated_at date
+)
+sqlite> .quit

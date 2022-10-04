@@ -54,7 +54,7 @@ insert into page(header, content, image, pagenumber, updated_at)
 values("Who are we?",
 "TRIYA’s aim is to make sailing accessible to all school age students to encourage a
 love for the water and sailing.We run programs from beginner levels all the way to national champions.",
-"roll_no_wind.jpeg",
+"roll_no_wind.jpg",
 1,
 date('now')
 );

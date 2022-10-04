@@ -11,30 +11,21 @@ TRIYA home
         and that’s why I’m attracted to these kind of boats."</p>
     <p class="quote-font"> Warren - 420 champion</p>
 </div>
-<!-- content boxes -->
+
+{% for x in page_data %}
+<!-- content box -->
 <div class="container-lg container-bg my-5 p-5 ">
     <div class="row align-items-center">
         <div class="col-md-6 ">
-            <h2>Who are we?</h2>
-            <p class="main-para">  TRIYA’s aim is to make sailing accessible to all school age students to encourage
-                a love for the water and sailing.
-                We run programs from beginner levels all the way to national champions.</p>
+            <h2>{{ x["header"] }}</h2>
+            <p class="main-para">  {{ x["content"] }} </p>
         </div>
-        <div class="col-md-6"><img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='images/roll_no_wind.jpg') }}" alt=""></div>
+        {% set img=x["image"] %}
+        <div class="col-md-6"><img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='images/'+img) }}"  alt=""></div>
     </div>
 </div>
-<div class="container-lg container-bg my-5 p-5 ">
-        <div class="row align-items-center reverse">
-            <div class="col-md-6 ">
-                <h2>420 Sailing</h2>
-                <p class="main-para">
-                    TRIYA’s aim is to make sailing accessible to all school age students to
-                    encourage a love for the water and sailing.
-                    We run programs from beginner levels all the way to national champions. .</p>
-            </div>
-            <div class="col-md-6 order-first"><img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='images/inboat_upwind.jpg' ) }}" alt=""></div>
-        </div>
-    </div>
+
+{% endfor %}
 <!-- cards -->
 <div class="container">
     <div class="container-bg my-5 p-3" id="coaches"> <h2 class="m-0">Our Coaches</h2></div>

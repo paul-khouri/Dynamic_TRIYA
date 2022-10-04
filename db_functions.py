@@ -32,18 +32,21 @@ def execute_external_script(sql_script_path, db_path):
         return False
         #print("sqlite connection is closed")
 
-def run_search_query(sql_query, file_path):
+
+def run_search_query(sql_query, file_path, rowfactory=True):
     """Get results from an sql query
 
     :param sql_query: str
     :param file_path: str
+    :param rowfactory: bool
     :return: tuple
     """
 
     try:
         db = sqlite3.connect(file_path)
         # will get multi dict rather than tuples, needs flask
-        #db.row_factory = sql.Row
+        if rowfactory:
+            db.row_factory = sqlite3.Row
         cursor = db.cursor()
         #print("connection successful")
         cursor.execute(sql_query)
