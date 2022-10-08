@@ -6,6 +6,31 @@ TRIYA home
 
 {% block content %}
 
+ <div class="container container-bg my-5 p-3" id="news"> <h2 class="m-0">Latest News</h2> </div>
+ {% if session["Authorisation"]==0 %}
+ <div class="container container-bg my-5 p-3">
+<div class="text-end">
+    <a href="{{ url_for('update_delete_newsitem', post_id=0) }}" class="btn bg-primary text-white me-5">New Post</a>
+</div>
+ </div>
+  {% endif %}
+{% if news_data %}
+{% for x in news_data %}
+<div class="container container-bg my-5 p-3">
+    <h3>{{x["header"]}}</h3>
+    <p class="quote-font">{{ x["details"] }}</p>
+    <p class="main-para">{{ x["content"] }}</p>
+     {% if session["Authorisation"]==0 %}
+    <div class="text-end">
+     <a href="{{ url_for('update_delete_newsitem', post_id=x['id'] ) }}" class="btn bg-primary text-white me-5">Update/Delete</a>
+    </div>
+      {% endif %}
+</div>
+
+{% endfor %}
+{% endif %}
+
+
  <div class="container container-bg my-5 p-3" id="about"> <h2 class="m-0">About Us</h2></div>
 <!-- quote -->
 <div class="container-lg container-bg my-5 p-3">

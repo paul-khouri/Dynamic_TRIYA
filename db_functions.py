@@ -91,6 +91,7 @@ def run_search_query_tuples(sql_query,values_tuple, file_path):
     """Run a Query only with tuple to go with question marks
 
     :param (str) sql_query:
+    :param values_tuple : tuple
     :param (path) file_path:
     :return: (tuple) result
     """

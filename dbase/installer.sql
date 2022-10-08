@@ -3,7 +3,7 @@ Database creation script
 */
 /* destroy all tables */
 drop table if exists page;
-drop table if exists newitem
+drop table if exists newsitem;
 drop table if exists coach;
 drop table if exists program;
 drop table if exists member;
@@ -23,9 +23,8 @@ create table page(
 create table newsitem(
     id integer primary key autoincrement not null,
     header text not null,
+    details text not null,
     content text not null,
-    image text not null,
-    pagenumber integer not null,
     updated_at date
 );
 
@@ -78,6 +77,16 @@ values("420 Sailing",
 the water and sailing. We run programs from beginner levels all the way to national champions.",
 "inboat_upwind.jpg",
 1,
+date('now')
+);
+
+/* News Item */
+insert into newsitem(header, details, content, updated_at)
+values("Kids Sailing Day",
+"Running Saturday 21 November, 9am to 3pm, Cost=$25.00",
+"For children an introductory sailing day. No need to register.
+Come down.
+Children must have a parent or guardian with them",
 date('now')
 );
 

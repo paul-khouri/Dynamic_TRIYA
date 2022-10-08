@@ -39,6 +39,11 @@ def insert_member(p):
     values_tuple = ("Warren", "Smith", "021236673", "waz@gmail.com", "67 Noodle Lane", "Karori", "admin", "temp", 0)
     run_commit_query(sql, values_tuple,p)
 
+def get_news(p):
+    sql="select id, header, details, content from newsitem;"
+    result = run_search_query(sql,p)
+    return result
+
 
 
 
@@ -50,7 +55,8 @@ if __name__ == "__main__":
     # for x in program_data:
     #     print(x.keys())
     #     print(x['total'])
-    #insert_member(db_path)
+    insert_member(db_path)
+    #get_news(db_path)
 
 
 

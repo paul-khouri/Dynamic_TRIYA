@@ -1,0 +1,39 @@
+{% extends "main_template.html" %}
+
+{% block title %}
+Manage News Item
+{% endblock %}
+
+{% block content %}
+<div class="container-lg container-bg my-5 px-5 py-1">
+  <form class="w-50 mx-auto" action="{{ url_for('update_delete_newsitem', post_id = p_id )}}" method="POST">
+        <div class="mb-0 d-none" >
+      <label for="id" class="form-label">id:</label>
+      <input type="text" class="form-control" id="id" name="id" aria-describedby="Title" value="{{ post_data['id'] }}" required>
+    </div>
+    <div class="mb-0">
+      <label for="posttitle" class="form-label">Post Title:</label>
+      <input type="text" class="form-control" id="posttitle" name="header" aria-describedby="Title" value="{{ post_data['header'] }}" required>
+    </div>
+    <div class="mb-0">
+      <label for="details" class="form-label">Details:</label>
+      <input type="text" class="form-control" id="details" name="details" aria-describedby="Description" value="{{ post_data['details'] }}" required>
+    </div>
+    <div>
+      <label for="postcontent" class="form-label">Content:</label>
+      <textarea class="form-control" id="postcontent" name="content" rows="6" required>{{ post_data['content'] }}</textarea>
+    </div>
+    <div class="text-end my-2">
+      <button type="reset" class="btn btn-primary">Reset</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+
+<div class="container-lg container-bg my-5 px-5 py-1">
+<div class="text-end">
+
+  <a href="{{ url_for('delete_item') }}" class="btn bg-primary text-white me-5">Delete Post</a>
+</div>
+</div>
+{% endblock %}
