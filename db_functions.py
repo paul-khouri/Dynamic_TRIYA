@@ -32,6 +32,29 @@ def execute_external_script(sql_script_path, db_path):
         return False
         #print("sqlite connection is closed")
 
+def run_commit_query(sql_query,values_tuple, file_path):
+    """Add data to data base using sql query with question marks
+
+    :param sql_query: str
+    :param values_tuple: tuple
+    :param file_path: string
+    :return: None
+    """
+    try:
+        conn = sqlite3.connect(file_path)
+        cursor = conn.cursor()
+        print("connection successful")
+        cursor.execute(sql_query, values_tuple)
+        conn.commit()
+        print("Commit Query executed")
+        cursor.close()
+    except sqlite3.Error as error:
+        print("Commit Error: {}".format(error))
+    finally:
+        if conn:
+            conn.close()
+            print("sqlite connection is closed")
+
 
 def run_search_query(sql_query, file_path, rowfactory=True):
     """Get results from an sql query
@@ -55,6 +78,35 @@ def run_search_query(sql_query, file_path, rowfactory=True):
         cursor.close()
     except sqlite3.Error as error:
         print("Error while creating sqlite table: {}".format(error))
+    finally:
+        if db:
+            db.close()
+            #print("sqlite connection is closed")
+        if result:
+            return result
+
+
+
+def run_search_query_tuples(sql_query,values_tuple, file_path):
+    """Run a Query only with tuple to go with question marks
+
+    :param (str) sql_query:
+    :param (path) file_path:
+    :return: (tuple) result
+    """
+    result = None
+    try:
+        db = sqlite3.connect(file_path)
+        # will get multi dict rather than tuples, needs flask
+        db.row_factory = sqlite3.Row
+        cursor = db.cursor()
+        #print("connection successful")
+        cursor.execute(sql_query,values_tuple)
+        result = cursor.fetchall()
+        #print("Search Query executed")
+        cursor.close()
+    except sqlite3.Error as error:
+        print("Error running search query tuples: {}".format(error))
     finally:
         if db:
             db.close()

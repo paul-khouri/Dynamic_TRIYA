@@ -21,6 +21,9 @@ body{
     color: var(--main-nav-text);
     font-size: 1.5em;
 }
+.btn{
+    font-size:1.25em;
+}
 
 
 .nav-item:hover{

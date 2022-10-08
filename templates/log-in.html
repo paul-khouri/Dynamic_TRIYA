@@ -1,0 +1,26 @@
+{% extends "main_template.html" %}
+
+{% block title %}
+TRIYA Log-in
+{% endblock %}
+
+{% block content %}
+
+<div class="container-lg container-bg my-5 px-0 pb-1">
+  <div class="display-6 text-white bg-warning ">{{error}}</div>
+  <form class="w-50 mx-auto mb-5" action="{{ url_for('log_in') }}" method="POST">
+    <div class="mb-0">
+      <label for="username" class="form-label">User Name</label>
+      <input type="text" class="form-control" id="username" name="User Name" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="pwd" class="form-label">Password</label>
+      <input type="password" class="form-control" id="pwd" name="Password">
+    </div>
+    <div class="text-end">
+    <button type="reset" class="btn btn-primary">Reset</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

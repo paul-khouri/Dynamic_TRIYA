@@ -16,9 +16,13 @@
     <img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='images/hero_image.jpg') }}" alt="Hero image">
 </div>
 <!-- nav -->
-<nav class="navbar navbar-expand-sm navbar-light bg-nav">
-    <div class="container-fluid">
-        <ul class="navbar-nav ">
+<nav class="navbar navbar-expand-sm bg-nav navbar-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav ">
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('index') }}">Home</a>
             </li>
@@ -34,9 +38,29 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('programs') }}#contactform">Contact</a>
             </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('index') }}#about">About</a>
+            </li>
         </ul>
     </div>
+
+    <div class="text-end">
+        {% if session["Username"] %}
+     <a href="{{ url_for('log_out') }}" class="btn btn-outline-light me-5">Log out</a>
+        {% else %}
+         <a href="{{ url_for('log_in') }}" class="btn btn-outline-light me-5">Log in</a>
+        {% endif %}
+
+    </div>
+
+  </div>
 </nav>
+{% if session["Username"] %}
+<div class="bg-warning display-5 text-white text-center "> You are logged in: {{session["Username"] }} {{session["Authorisation"] }}</div>
+{% else %}
+<div class="bg-primary display-5 text-white text-center "> You are logged out</div>
+ {% endif %}
+
 {% block content %}
 {% endblock %}
 

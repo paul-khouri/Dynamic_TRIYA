@@ -1,5 +1,5 @@
 import sqlite3
-from db_functions import run_search_query
+from db_functions import run_search_query, run_commit_query, run_search_query_tuples
 
 
 def get_master_data(p):
@@ -32,15 +32,26 @@ def get_programs(p):
     result = run_search_query(sql,p)
     return result
 
+def insert_member(p):
+    sql = """
+    insert into member(firstname,secondname,phone,email,streetaddress,suburb,updated_at,username,password,authorisation)
+    values(?,?,?,?,?,?,date('now'),?,?,?);"""
+    values_tuple = ("Warren", "Smith", "021236673", "waz@gmail.com", "67 Noodle Lane", "Karori", "admin", "temp", 0)
+    run_commit_query(sql, values_tuple,p)
+
+
+
 
 if __name__ == "__main__":
     db_path = 'dbase/triya_data.sqlite'
     #get_master_data(db_path)
     #get_sqlite_schema(db_path)
-    program_data = get_programs(db_path)
-    for x in program_data:
-        print(x.keys())
-        print(x['total'])
+    # program_data = get_programs(db_path)
+    # for x in program_data:
+    #     print(x.keys())
+    #     print(x['total'])
+    #insert_member(db_path)
+
 
 
 

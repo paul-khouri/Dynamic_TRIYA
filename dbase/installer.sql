@@ -3,6 +3,7 @@ Database creation script
 */
 /* destroy all tables */
 drop table if exists page;
+drop table if exists newitem
 drop table if exists coach;
 drop table if exists program;
 drop table if exists member;
@@ -11,6 +12,15 @@ drop table if exists member;
 pragma foreign_keys = on;
 
 create table page(
+    id integer primary key autoincrement not null,
+    header text not null,
+    content text not null,
+    image text not null,
+    pagenumber integer not null,
+    updated_at date
+);
+
+create table newsitem(
     id integer primary key autoincrement not null,
     header text not null,
     content text not null,
@@ -28,7 +38,10 @@ create table member(
     email text not null,
     streetaddress text not null,
     suburb text not null,
-    updated_at date
+    updated_at date,
+    username text unique not null,
+    password text not null,
+    authorisation integer not null
 );
 
 create table coach(
