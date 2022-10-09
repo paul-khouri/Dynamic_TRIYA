@@ -87,7 +87,7 @@ values("Kids Sailing Day",
 "For children an introductory sailing day. No need to register.
 Come down.
 Children must have a parent or guardian with them",
-date('now')
+datetime('now')
 );
 
 /* Programs */
@@ -135,6 +135,10 @@ training in the morning and racing in the afternoon.",
 "fleet_racing.jpg",
 date('now')
 );
+
+/* member */
+insert into member(firstname,secondname,phone,email,streetaddress,suburb,updated_at,username,password,authorisation)
+values("Warren", "Smith", "021236673", "waz@gmail.com", "67 Noodle Lane", "Karori",datetime('now'), "admin", "temp", 0);
 
 
 

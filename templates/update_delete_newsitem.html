@@ -6,7 +6,7 @@ Manage News Item
 
 {% block content %}
 <div class="container-lg container-bg my-5 px-5 py-1">
-  <form class="w-50 mx-auto" action="{{ url_for('update_delete_newsitem', post_id = p_id )}}" method="POST">
+  <form class="w-50 mx-auto" action="{{ url_for('update_delete_newsitem', id = id )}}" method="POST">
         <div class="mb-0 d-none" >
       <label for="id" class="form-label">id:</label>
       <input type="text" class="form-control" id="id" name="id" aria-describedby="Title" value="{{ post_data['id'] }}" required>

@@ -1,0 +1,58 @@
+{% extends "main_template.html" %}
+
+{% block title %}
+TRIYA -- add update delete program
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-lg container-bg my-5 px-5 py-1">
+  <form class="w-50 mx-auto" action="{{ url_for('aud_program', id = id )}}" method="POST" enctype=multipart/form-data>
+    <div class="mb-0">
+      <label for="program_name" class="form-label">Program Name:</label>
+      <input type="text" class="form-control" id="program_name" name="name" required value="{{form_data['name']}}">
+    </div>
+    <div class="mb-0">
+      <label for="short_description" class="form-label">Short Description:</label>
+      <input type="text" class="form-control" id="short_description" name="subtitle" required value="{{form_data['subtitle']}}">
+    </div>
+    <div>
+      <label for="long_description" class="form-label">Long Description</label>
+      <textarea class="form-control" id="long_description" name="description" rows="6" required>{{form_data['description']}}</textarea>
+    </div>
+    <div class="mb-0">
+      <label for="coaching_fee" class="form-label">Coaching Fee:</label>
+      <div class="input-group mb-3">
+        <span class="input-group-text">$</span>
+      <input type="number" class="form-control" id="coaching_fee" name="coachingfee" required value="{{form_data['coachingfee']}}">
+      </div>
+    </div>
+    <div class="mb-0">
+      <label for="boathire_fee" class="form-label">Boat Hire:</label>
+      <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input type="number" class="form-control" id="boathire_fee" name="boathire" required value="{{form_data['boathire']}}">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="imageupload" class="form-label">Add Image</label>
+      <input class="form-control" type="file" id="imageupload" name="file">
+      {% if error %}
+      <div class="bg-warning text-white text-left main-para px-5 ">{{error}}</div>
+      {% endif %}
+    </div>
+    <div class="text-end mb-2">
+      <button type="reset" class="btn btn-primary">Reset</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+
+<div class="container-lg container-bg my-5 px-5 py-1">
+<div class="text-end">
+
+  <a href="{{ url_for('delete_item') }}" class="btn bg-primary text-white me-5">Delete Program</a>
+</div>
+</div>
+{% endblock %}

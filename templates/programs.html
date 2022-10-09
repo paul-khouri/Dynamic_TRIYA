@@ -6,6 +6,14 @@ TRIYA Programs
 
 {% block content %}
 
+ {% if session["Authorisation"]==0 %}
+ <div class="container container-bg my-5 p-3">
+<div class="text-end">
+    <a href="{{ url_for('aud_program', id=0) }}" class="btn bg-primary text-white me-5">New Program</a>
+</div>
+ </div>
+  {% endif %}
+
 {% for x in page_data %}
 <!-- content box -->
 <div class="container-lg container-bg my-2 p-5 ">
@@ -18,6 +26,13 @@ TRIYA Programs
          {% set img=x["image"] %}
         <div class="col-md-6 {{loop.cycle('','order-first') }}"><img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='images/'+img ) }}" alt=""></div>
     </div>
+
+    {% if session["Authorisation"]==0 %}
+    <div class="text-end my-2">
+     <a href="{{ url_for('aud_program', id=x['id'] ) }}" class="btn bg-primary text-white me-5">Update/Delete</a>
+    </div>
+      {% endif %}
+
 </div>
 {% endfor %}
 

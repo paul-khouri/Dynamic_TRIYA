@@ -56,8 +56,13 @@
   </div>
 </nav>
 {% if session["Username"] %}
-<div class="bg-warning display-5 text-white text-center "> You are logged in: {{session["Username"] }} {{session["Authorisation"] }}</div>
+<div class="bg-warning display-5 text-white text-center ">
+{% for x,y in session.items() %}
+{{x}} : {{y}} <br>
+{% endfor %}
+     </div>
 {% else %}
+
 <div class="bg-primary display-5 text-white text-center "> You are logged out</div>
  {% endif %}
 
