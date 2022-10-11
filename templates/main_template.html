@@ -16,7 +16,7 @@
     <img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='images/hero_image.jpg') }}" alt="Hero image">
 </div>
 <!-- nav -->
-<nav class="navbar navbar-expand-sm bg-nav navbar-dark">
+<nav class="navbar navbar-expand-md bg-nav">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
@@ -46,9 +46,9 @@
 
     <div class="text-end">
         {% if session["Username"] %}
-     <a href="{{ url_for('log_out') }}" class="btn btn-outline-light me-5">Log out</a>
+     <a href="{{ url_for('log_out') }}" class="btn btn-outline-light">Log out</a>
         {% else %}
-         <a href="{{ url_for('log_in') }}" class="btn btn-outline-light me-5">Log in</a>
+         <a href="{{ url_for('log_in') }}" class="btn btn-outline-light">Log in</a>
         {% endif %}
 
     </div>
@@ -63,7 +63,7 @@
      </div>
 {% else %}
 
-<div class="bg-primary display-5 text-white text-center "> You are logged out</div>
+<div class="bg-main display-5 text-white text-center "> You are logged out</div>
  {% endif %}
 
 {% block content %}

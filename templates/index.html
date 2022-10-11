@@ -6,9 +6,9 @@ TRIYA home
 
 {% block content %}
 
- <div class="container container-bg my-5 p-3" id="news"> <h2 class="m-0">Latest News</h2> </div>
+ <div class="container-lg container-mods" id="news"> <h2 class="m-0">Latest News</h2> </div>
  {% if session["Authorisation"]==0 %}
- <div class="container container-bg my-5 p-3">
+ <div class="container-lg container-mods">
 <div class="text-end">
     <a href="{{ url_for('update_delete_newsitem', id=0) }}" class="btn bg-primary text-white me-5">New Post</a>
 </div>
@@ -16,7 +16,7 @@ TRIYA home
   {% endif %}
 {% if news_data %}
 {% for x in news_data %}
-<div class="container container-bg my-5 p-3">
+<div class="container-lg container-mods">
     <h3>{{x["header"]}}</h3>
     <p class="quote-font">{{ x["details"] }}</p>
     <p class="main-para">{{ x["content"] }}</p>
@@ -31,7 +31,7 @@ TRIYA home
 {% endif %}
 
 
- <div class="container container-bg my-5 p-3" id="about"> <h2 class="m-0">About Us</h2></div>
+ <div class="container-lg container-bg my-5 p-3" id="about"> <h2 class="m-0">About Us</h2></div>
 <!-- quote -->
 <div class="container-lg container-bg my-5 p-3">
     <p class="quote-font">"I come from the 49ers, where there is a high error rate in the sailing but the best sailor still wins,
@@ -54,7 +54,7 @@ TRIYA home
 
 {% endfor %}
 <!-- cards -->
-<div class="container">
+<div class="container-lg">
     <div class="container-bg my-5 p-3" id="coaches"> <h2 class="m-0">Our Coaches</h2></div>
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">

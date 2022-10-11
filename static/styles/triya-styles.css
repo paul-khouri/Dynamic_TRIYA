@@ -1,6 +1,6 @@
 :root {
     --main-bg: rgb(197, 197, 197);
-    --main-bg-color: rgb(74,134,190);
+    --blue-bg-color: rgb(74,134,190);
     --main-nav-text:rgb(255,255,255);
     --main-nav-bg: rgb(237,46,46);
     --main-nav-hover: rgb(161, 20, 20);
@@ -12,7 +12,7 @@ body{
     background-color: var(--main-bg)
 }
 .bg-main{
-    background-color: var(--main-bg-color)
+    background-color: var(--blue-bg-color)
 }
 .bg-nav{
     background-color: var(--main-nav-bg);
@@ -32,6 +32,12 @@ body{
 }
 .container-bg{
     background-color: var(--main-box-bg);
+}
+.container-mods{
+ background-color: var(--main-box-bg);
+ margin: 1em auto;
+ padding: 0.5em 1em;
+
 }
 .quote-font{
     font-size: 2em;
