@@ -199,6 +199,16 @@ def delete_item():
         session.pop("delete")
         return redirect(url_for('programs'))
 
+@app.route("/images")
+def images():
+    files = []
+    for x in os.listdir(app.config['UPLOAD_FOLDER']):
+        if x.lower().endswith((".jpg",".png")):
+            files.append(x)
+
+    print(files)
+    return render_template("images.html", files=files)
+
 def print_image_data(g):
     print(g)
     print(type(g))

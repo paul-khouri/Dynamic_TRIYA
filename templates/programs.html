@@ -13,7 +13,7 @@ TRIYA Programs
 </div>
  </div>
   {% endif %}
-
+<!-- course information -->
 {% for x in page_data %}
 <!-- content box -->
 <div class="container-lg container-bg my-2 p-5 ">
@@ -36,40 +36,28 @@ TRIYA Programs
 </div>
 {% endfor %}
 
-
 <!-- course fee table -->
 <div class="container-lg container-bg my-2 p-5 ">
     <table class="table">
         <thead>
-            <tr>
-                <th scope="col" class="text-navblue">Costs</th>
-                {% for x in page_data %}
-                <th scope="col" class="text-navblue">{{ x["name"] }}</th>
-                {% endfor %}
-            </tr>
+        <tr><th> </th><th> Coaching Fee </th> <th> Boat Hire </th> <th> Total</th></tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row" class="text-navblue">Coaching fee</th>
-                {% for x in page_data %}
-                <td>{{ x["coachingfee"] | currency_format }}</td>
-                {% endfor %}
-            </tr>
-            <tr>
-                <th scope="row" class="text-navblue">Boat hire</th>
-                {% for x in page_data %}
-                <td>{{ x["boathire"] | currency_format }}</td>
-                 {% endfor %}
-            </tr>
-            <tr>
-                <th scope="row" class="text-navblue">Total</th>
-                 {% for x in page_data %}
-                 <td>{{ x["total"] | currency_format }}</td>
-                 {% endfor %}
-            </tr>
+           {% for x in page_data %}
+           <tr>
+        <th scope="row" class="text-navblue">{{ x["name"] }}</th>
+           <td> {{ x["coachingfee"] | currency_format }}</td>
+           <td>{{ x["boathire"] | currency_format }}</td>
+        <td> {{ x["total"] | currency_format }} </td>
+        </tr>
+        {% endfor %}
+
         </tbody>
     </table>
 </div>
+
+
+
 <!-- contact form for course -->
 <div class="container-lg container-bg my-2 px-5 pb-5 ">
     <form id="contactform">

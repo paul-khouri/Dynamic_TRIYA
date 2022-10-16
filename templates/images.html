@@ -1,0 +1,64 @@
+{% extends "main_template.html" %}
+
+{% block title %}
+TRIYA Programs
+{% endblock %}
+
+{% block content %}
+<style>
+    table{
+    border: 2px solid green;
+    color:white;
+    background-color:blue;
+    margin:auto;
+    }
+
+    tr{
+     border-bottom: 5px solid pink;
+    }
+</style>
+<h1>Images</h1>
+<style>
+    .row{
+    border: 2px solid green;
+    }
+    .col-md{
+      border: 2px solid blue;
+      background-color: black !important;
+    }
+</style>
+<div class="container-lg container-bg ">
+       {% for x in files %}
+    {% if loop.index0 is divisibleby 3 %}
+    <div class="row">
+    {% endif %}
+         <div class="col-md bg-success  align-items-center d-flex m-2">
+             <img id='{{ "Hello"~loop.index~"Y" }}' class="img-fluid mx-auto my-auto"  src="{{ url_for('static', filename='images/'+x ) }}" alt="">
+         </div>
+    {% if loop.index is divisibleby 3 %}
+    </div>
+    {% endif %}
+    {% if loop.last %}
+        {% if loop.length % 3 == 2 %}
+         <div class="col-md"></div>
+        </div>
+        {% elif loop.length % 3 == 1 %}
+        <div class="col-md"></div>
+        <div class="col-md"></div>
+        </div>
+        {% endif %}
+    {% endif %}
+
+
+    {% endfor %}
+</div>
+<hr>
+<table>
+    {% for x in files %}
+    <tr><td> {{x}}</td>
+        <td> <img id='{{ "Hello"~loop.index~"Z" }}' class="img-fluid mx-auto d-block" style="max-width:200px;" src="{{ url_for('static', filename='images/'+x ) }}" alt=""></td>
+    <td>{{ loop.index}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
