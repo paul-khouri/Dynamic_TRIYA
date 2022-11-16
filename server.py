@@ -2,9 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from db_functions import run_search_query, run_search_query_tuples, run_commit_query
 import os
 
-app=Flask(__name__)
+app = Flask(__name__)
 db_path = 'dbase/triya_data.sqlite'
-app.secret_key= "tempkey"
+app.secret_key = "tempkey"
 
 UPLOAD_FOLDER = 'static/images'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
@@ -21,12 +21,12 @@ def currency_format(value):
 def index():
     sql = "select header, content, image from page where pagenumber = 1;"
     result = run_search_query(sql, db_path)
-    sql="select id, header, details, content from newsitem order by updated_at desc;"
-    news = run_search_query(sql,db_path)
-    return render_template("index.html", page_data=result, news_data= news)
+    sql = "select id, header, details, content from newsitem order by updated_at desc;"
+    news = run_search_query(sql, db_path)
+    return render_template("index.html", page_data=result, news_data=news)
 
 
-@app.route('/update_delete_newsitem/<id>', methods=['GET','POST'])
+@app.route('/update_delete_newsitem/<id>', methods=['GET', 'POST'])
 def update_delete_newsitem(id):
     null_data = {
         "id": 0,
@@ -37,12 +37,12 @@ def update_delete_newsitem(id):
     # arriving at page through link
     if request.method == "GET":
         # check authorisation
-        if session and session["Authorisation"]==0:
+        if session and session["Authorisation"] == 0:
             # should check post_id is digit ?
             if id == "0":
                 # have arrived from new post link
-                #use null data package for the form values
-                return render_template("update_delete_newsitem.html", id=id, post_data= null_data)
+                # use null data package for the form values
+                return render_template("update_delete_newsitem.html", id=id, post_data=null_data)
             else:
                 # get the required post
                 sql = "select id, header, details, content from newsitem where id = ?;"
@@ -50,36 +50,37 @@ def update_delete_newsitem(id):
                 result = run_search_query_tuples(sql, values_tuple, db_path)
                 # only want the first item so use result[0]
                 # set up deletion data if required
-                session["delete"]={"id":id,"table": "newsitem" }
+                session["delete"] = {"id": id, "table": "newsitem"}
                 # run template with form fields filled with post data
-                return render_template("update_delete_newsitem.html", id = id, post_data= result[0])
+                return render_template("update_delete_newsitem.html", id=id, post_data=result[0])
         else:
             # if authorisation failed go to error page
             return render_template("error.html")
     elif request.method == "POST":
-        f=request.form
+        f = request.form
         if f["id"] == "0":
             # create a new news item
             sql = "insert into newsitem(header, details, content, updated_at) values(?,?,?, datetime('now'));"
-            values_tuple=(f['header'], f['details'], f['content'])
+            values_tuple = (f['header'], f['details'], f['content'])
             run_commit_query(sql, values_tuple, db_path)
             return redirect(url_for('index'))
         else:
             # update news item
-            sql="update newsitem set header = ?, details = ?, content = ?, updated_at = datetime('now') where id = ?"
+            sql = "update newsitem set header = ?, details = ?, content = ?, updated_at = datetime('now') where id = ?"
             values_tuple = (f['header'], f['details'], f['content'], f["id"])
             run_commit_query(sql, values_tuple, db_path)
             return redirect(url_for('index'))
 
 
-
 @app.route("/programs")
 def programs():
-    sql = "select id, name, subtitle, description, coachingfee, boathire, coachingfee+boathire as 'total', image from program;"
-    result = run_search_query(sql,db_path)
+    sql = "select id, name, subtitle, description, coachingfee, " \
+          "boathire, coachingfee+boathire as 'total', image from program;"
+    result = run_search_query(sql, db_path)
     return render_template("programs.html", page_data=result)
 
-@app.route("/aud_program/<id>", methods=['GET','POST'])
+
+@app.route("/aud_program/<id>", methods=['GET', 'POST'])
 def aud_program(id):
     null_data = {
         "id": 0,
@@ -105,7 +106,7 @@ def aud_program(id):
                 # only want the first item so use result[0]
                 # set up deletion data if required
                 session["delete"] = {"id": id, "table": "program"}
-                session['returnpage']=url_for('programs')
+                session['returnpage'] = url_for('programs')
                 # run template with form fields filled with post data
                 return render_template("aud_program.html", id=id, form_data=result[0])
         else:
@@ -114,7 +115,7 @@ def aud_program(id):
 
     elif request.method == "POST":
         error = None
-        f=request.form
+        f = request.form
         # special request for image file
         g = request.files['file']
         if id == "0":
@@ -123,9 +124,10 @@ def aud_program(id):
                 g.save(os.path.join(app.config['UPLOAD_FOLDER'], g.filename))
                 size = os.stat(os.path.join(app.config['UPLOAD_FOLDER'], g.filename)).st_size
                 print(size)
-                sql= "insert into program(name, subtitle, description, coachingfee, boathire, image, updated_at) values(?,?,?,?,?,?, datetime('now'));"
-                values_tuple= (f['name'], f['subtitle'], f['description'], f['coachingfee'], f['boathire'], g.filename)
-                run_commit_query(sql,values_tuple,db_path)
+                sql = "insert into program(name, subtitle, description, coachingfee, boathire, image, updated_at) " \
+                      "values(?,?,?,?,?,?, datetime('now'));"
+                values_tuple = (f['name'], f['subtitle'], f['description'], f['coachingfee'], f['boathire'], g.filename)
+                run_commit_query(sql, values_tuple, db_path)
                 return redirect(url_for('programs'))
             else:
                 error = "You have not selected an appropriate image"
@@ -137,13 +139,14 @@ def aud_program(id):
                 # update without changing the image
                 sql = """ update program set name = ?, subtitle = ?, description = ?, coachingfee = ?, 
                 boathire = ?, updated_at = datetime('now') where id = ?"""
-                values_tuple= (f['name'], f['subtitle'], f['description'], f['coachingfee'], f['boathire'], id)
+                values_tuple = (f['name'], f['subtitle'], f['description'], f['coachingfee'], f['boathire'], id)
                 run_commit_query(sql, values_tuple, db_path)
             elif g.content_type == "image/jpeg":
                 # update with image change
                 sql = """ update program set name = ?, subtitle = ?, description = ?, coachingfee = ?, 
                 boathire = ?, image = ?,updated_at = datetime('now') where id = ?"""
-                values_tuple= (f['name'], f['subtitle'], f['description'], f['coachingfee'], f['boathire'],g.filename, id)
+                values_tuple = (f['name'], f['subtitle'], f['description'], f['coachingfee'],
+                                f['boathire'], g.filename, id)
                 run_commit_query(sql, values_tuple, db_path)
             else:
                 # image file selected but is not of the right type
@@ -158,16 +161,16 @@ def information():
     return render_template("information.html")
 
 
-@app.route("/log-in", methods=["GET","POST"])
+@app.route("/log-in", methods=["GET", "POST"])
 def log_in():
     if request.method == "GET":
         return render_template("log-in.html")
     elif request.method == "POST":
-        f= request.form
+        f = request.form
         # look for user in dbase
         sql = "select password, authorisation from member where username = ?"
         values_tuple = (f["User Name"],)
-        result = run_search_query_tuples(sql,values_tuple,db_path)
+        result = run_search_query_tuples(sql, values_tuple, db_path)
         pwd = f["Password"]
 
         if result is None:
@@ -175,39 +178,42 @@ def log_in():
         elif pwd != result[0]["password"]:
             return render_template("log-in.html", error="Your details do not match")
         else:
-            session["Username"]=f["User Name"]
+            session["Username"] = f["User Name"]
             session["Authorisation"] = result[0]["authorisation"]
             return redirect(url_for('index'))
 
 
-@app.route("/log-out", methods=["GET","POST"])
+@app.route("/log-out", methods=["GET", "POST"])
 def log_out():
     session.clear()
     return redirect(request.referrer)
 
+
 @app.route("/delete_item")
 def delete_item():
     values_tuple = (session["delete"]["id"])
-    if session["delete"]["table"]=="newsitem":
+    if session["delete"]["table"] == "newsitem":
         sql = "delete from newsitem where id = ?"
         run_commit_query(sql, values_tuple, db_path)
         session.pop("delete")
         return redirect(url_for('index'))
-    elif session["delete"]["table"] =="program":
+    elif session["delete"]["table"] == "program":
         sql = "delete from program where id = ?"
         run_commit_query(sql, values_tuple, db_path)
         session.pop("delete")
         return redirect(url_for('programs'))
 
+
 @app.route("/images")
 def images():
     files = []
     for x in os.listdir(app.config['UPLOAD_FOLDER']):
-        if x.lower().endswith((".jpg",".png")):
+        if x.lower().endswith((".jpg", ".png")):
             files.append(x)
 
     print(files)
     return render_template("images.html", files=files)
+
 
 def print_image_data(g):
     print(g)
