@@ -1,0 +1,113 @@
+:root{
+    --main-bg-color: rgb(193, 206, 218);
+    --titles: rgb(237,46,46);
+    --deepblue: rgb(24, 30, 65);
+}
+
+
+body{
+    background-color: var(--main-bg-color);
+    font-size: 100%;
+}
+p{
+    font-size: 1.2em;
+}
+
+h2, h3, h4{
+    font-weight: bolder;
+    color: var(--titles);
+    border-bottom: 1px solid black;
+    padding-bottom: 0.5em
+}
+/* sections */
+.news, .about, .coaches, .program, .sign-up{
+    border: 0px solid red;
+    margin: 0em 0em 1em 0;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.2);
+    background-color: white;
+    padding:1em;
+}
+
+/* news section detailing */
+.news h3{
+    font-size: 1em;
+    color: var(--titles);
+    font-weight: bold;
+}
+.news div:nth-child(2){
+    font-family: monospace, sans-serif;
+}
+.news div:nth-child(3){
+    text-align: right;
+    color: var(--titles);
+    font-weight: bold;
+}
+
+/*  about detailing */
+.about div:first-child{
+    border-right: 1px solid black;
+}
+.about div{
+    border: 0px solid green;
+}
+
+
+/* program detailing */
+.program div p:nth-child(2){
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+
+
+
+/* layout */
+
+/* columns for index page */
+.left, .right{
+    border:2px solid pink;
+    padding: 0;
+}
+
+
+/* images */
+.trans{
+    opacity: 0.5;
+}
+
+
+
+/* form */
+.alert{
+    color:red;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.white-box{
+    background-color: white;
+}
+
+/* footer */
+footer{
+    background-color: var(--deepblue);
+    margin-top: 1em;
+
+}
+
+
+
+    /*---- screen --- */
+@media only screen and (max-width: 767px) {
+    /* --reverse flex for images on the left --- */
+    .main-cols, .reverse {
+        flex-direction: column-reverse;
+    }
+}
+    /*---- screen --- */
+@media only screen and (max-width: 992px) {
+    /* --reverse flex for images on the left --- */
+    .main-cols {
+        flex-direction: column-reverse;
+    }
+}
