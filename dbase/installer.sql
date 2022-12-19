@@ -66,7 +66,7 @@ create table program(
 /* Pages */
 insert into page(header, content, image, pagenumber, updated_at)
 values('Who are we?',
-'TRIYA’s aim is to make sailing accessible to all ' ||
+'TRIYAs aim is to make sailing accessible to all ' ||
 'school age students to encourage a love for the water ' ||
 'and sailing.We run programs from beginner levels all the ' ||
 'way to national champions.',
@@ -77,8 +77,8 @@ date('now')
 
 insert into page(header, content, image, pagenumber, updated_at)
 values('420 Sailing',
-'TRIYA’s aim is to make sailing accessible to all school age students to encourage a love for
-the water and sailing. We run programs from beginner levels all the way to national champions.',
+'TRIYAs aim is to make sailing accessible to all school age students to encourage a love for'||
+'the water and sailing. We run programs from beginner levels all the way to national champions.',
 'inboat_upwind.jpg',
 1,
 date('now')
@@ -98,10 +98,10 @@ datetime('now')
 insert into program(name, subtitle, description, coachingfee, boathire,image,updated_at)
 values('Learn to Sail',
 'This is on weekdays from 4pm until 8pm',
-'Focuses on the basics of sailing learning how to tack, gybe, position in the boat and
-rigging. Currently this runs everyday after school apart from a Wednesday and is
-perfect for gaining confidence in and around a 420 boat. If your sailor has
-raced another type of boat before or are new to sailing this is the course for them.',
+'Focuses on the basics of sailing learning how to tack, gybe, position in the boat and ' ||
+'rigging. Currently this runs everyday after school apart from a Wednesday and is ' ||
+'perfect for gaining confidence in and around a 420 boat. If your sailor has' ||
+'raced another type of boat before or are new to sailing this is the course for them.',
 190,
 0,
 'set_up_opt.jpg',

@@ -186,7 +186,7 @@ def log_in():
 @app.route("/log-out", methods=["GET", "POST"])
 def log_out():
     session.clear()
-    return redirect(request.referrer)
+    return redirect(url_for('index'))
 
 
 @app.route("/delete_item")
