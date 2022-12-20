@@ -3,7 +3,81 @@
 {% block title %}
 Information
 {% endblock %}
-
+{% block banner %}{{ url_for('static', filename='images/banner_sail_b.png') }}{% endblock %}
 {% block content %}
-Information
+        <h1>Information</h1>
+    <div class="container-lg">
+        <div class="information">
+
+            <h2>What do you need?</h2>
+            <h3>Swimming level</h3>
+            <p>All participants must be able to swim 50m confidently. You need to have completed at least, a learn to sail course and
+            become a competent sailor for graduation to trapeze and spinnaker.  Be focused on skill development to sail in the
+            National contest 2021. Enrol and pay the fees before the first day of the course. As well as completing the
+            parental consent below.</p>
+            <h3>Parent/Guardian consent</h3>
+            <p>I understand that there are some inherent risks and dangers in sailing. I understand that neither TRIYA, EBY&MBC
+            its officers, coaches or helpers accept any responsibility in respect of injury or loss to person or property
+            that may be sustained by reason of participation in the activities.  My teenager will exercise common sense and
+            self-discipline, and take heed of the instructions of the coach.  I agree to the use of  my teenager’s photographs
+            and other relevant information in publicity and promotion of  TRIYA, in accordance with the Privacy Act 2020.
+            I agree that a “life jacket” (buoyancy aid) will be worn by my teenager at all times while on the water.
+            I expect my teenager to assist until all gear has been washed and put away, and to speak to the
+            Coach/Manager before leaving each time.	</p>
+            <h3>Gear List</h3>
+            <ul>
+                <li>For sailing in
+                    <ul>
+                        <li> Warm layers (more than one) wool or poly-prop under togs or wet suit. </li>
+                        <li> A wet suit would be great, but not essential. </li>
+                        <li>DO NOT WEAR COTTON </li>
+                        <li> Old sneakers or wet suit booties. </li>
+                        <li> Sun hat or warm hat depending on weather (tied on is good)</li>
+                        <li> We provide a windbreaker and a buoyancy aid. </li>
+                    </ul>
+                </li>
+                <li>After Sailing
+                    <ul>
+                        <li> Towel</li>
+                        <li> Change of  warm dry clothes, including a jacket.  It gets cold in the late afternoon! </li>
+                        <li>A drink bottle </li>
+                        <li> Food for before and after sailing. </li>
+                    </ul>
+                </li>
+            </ul>
+            </div>
+        <div class="information">
+            <h2>Sailing and the Weather </h2>
+            <div> <img class="img-fluid" src="{{ url_for('static', filename='images/placeholder_banner.png') }}" alt=""> </div>
+            <p> Sailing is easy. It is learning to read the wind that is challenging.
+            You can not see the wind. You can only see results of the wind.
+            You must train your eye to look for wind indicators. Some wind indicators to
+            look for while on or near the water are: flags, smoke, anchored boats, throw
+            sand in the air, long hair and ripples on the water. </p>
+            <p> You can also use your boat to find the wind if necessary. Let the main sail out completely,
+            turn the boat until the boom comes in over the center of the boat.The front of the boat is now pointed
+            at the wind direction. Ripples on the water are one of the best natural
+            wind indicators because they are around you all the time and they also help estimate the wind speed.
+            The bigger the ripple, the stronger the wind.</p>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}

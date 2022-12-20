@@ -1,12 +1,12 @@
 {% extends "main_template.html" %}
 
 {% block title %}
-TRIYA home
+Programs and sign-up
 {% endblock %}
-
+{% block banner %}{{ url_for('static', filename='images/banner_sail_a.png') }}{% endblock %}
 {% block content %}
 
-        <h2>Our Programs</h2>
+        <h1>Our Programs</h1>
     <div class="container-lg">
         <div class="row align-items-center program">
             <div class="col-md-6 ">
@@ -53,7 +53,7 @@ TRIYA home
             </div>
         </div>
     </div>
-    <h3> Course fees </h3>
+    <h2> Course fees </h2>
     <div class="container-lg white-box">
         <table class="table">
             <thead>
@@ -86,7 +86,7 @@ TRIYA home
             </tbody>
         </table>
     </div>
-    <h2 id="signup"> Sign up for membership</h2>
+    <h1 id="signup"> Sign up for membership</h1>
     <div class="container-lg white-box">
         <p> Signing up adds you to our mailing list and allows you to comment on our news posts</p>
         <p> We will contact you for further details and possible payments.</p>
