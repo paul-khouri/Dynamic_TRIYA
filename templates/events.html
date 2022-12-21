@@ -3,7 +3,57 @@
 {% block title %}
 Events
 {% endblock %}
+{% block banner %}{{ url_for('static', filename='images/banner_green.png') }}{% endblock %}
 
 {% block content %}
-Events
+    <style>
+
+    </style>
+<h1>Our Events Calendar</h1>
+    <div class="container-lg">
+        <div class="event">
+            <div class="row">
+                <div class="col-12"><h2> AON 420 clinic at Evans Bay </h2> </div>
+            </div>
+            <div class="row">
+                <div class="col-4"> 08:30 </div>
+                <div class="col-8"> 18 Dec 22</div>
+            </div>
+               <div class="row">
+                <div class="col-12"> Runs over 3 days.</div>
+            </div>
+        </div>
+
+        <div class="event">
+            <div class="row">
+                <div class="col-12"><h2> Evans Bay Regatta </h2> </div>
+            </div>
+            <div class="row">
+                <div class="col-4"> 08:30 </div>
+                <div class="col-8"> 20 Mar 22</div>
+            </div>
+               <div class="row">
+                <div class="col-12"> Runs over 3 days.</div>
+            </div>
+        </div>
+
+        <div class="event">
+            <div class="row">
+                <div class="col-12"><h2>  420 Nationals at Naval Point in ChCh </h2> </div>
+            </div>
+            <div class="row">
+                <div class="col-4"> 08:30 </div>
+                <div class="col-8"> 2 Apr 22</div>
+            </div>
+               <div class="row">
+                <div class="col-12"> Runs over 2 days.</div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 {% endblock %}

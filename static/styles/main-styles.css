@@ -1,6 +1,8 @@
 :root{
     --main-bg-color: rgb(193, 206, 218);
+    --main-bg-color-grad: rgb(200, 210, 228);
     --titles: rgb(237,46,46);
+    --titles-trans: rgba(237,46,46,0.5);
     --deepblue: rgb(24, 30, 65);
     --deepblue-trans: rgba(24, 30, 65, 0.7);
 }
@@ -9,19 +11,41 @@
 body{
     background-color: var(--main-bg-color);
     font-size: 100%;
+    background: repeating-linear-gradient(90deg, var(--main-bg-color) 0, var(--main-bg-color-grad) 8px, var(--main-bg-color) 15px);
 }
 p{
     font-size: 1.2em;
 }
-
-h1, h2, h3, h4{
+/* line behind titles */
+h1 {
+    border: 0px solid red;
+    padding:0;
+    overflow: hidden;
+    color: var(--titles-trans);
+    font-weight: bold;
+    display: table;
+    white-space: nowrap;
+    margin: 0.75em 0;
+}
+h1:before, h1:after {
+    border-top: 3px solid var(--titles-trans);
+    content: '';
+    display: table-cell;
+    position: relative;
+    top: 0.65em;
+    width: 50%;
+}
+h1:before { right: 3%; }
+h1:after { left: 3%; }
+/* -------------------------------------- */
+h2, h3, h4{
     font-weight: bolder;
     color: var(--titles);
     border-bottom: 1px solid black;
     padding-bottom: 0.5em
 }
 /* sections */
-.news, .about, .coaches, .program, .sign-up, .information{
+.news, .about, .coaches, .program, .sign-up, .information, .event{
     border: 0px solid red;
     margin: 0em 1em 1em 0;
     box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.2);
@@ -31,7 +55,26 @@ h1, h2, h3, h4{
 .information h3{
     text-indent: 1em;
 }
+
+/* events page */
+.event .row:nth-child(2) div{
+    text-align: center;
+    font-size: 3em;
+    font-weight: bolder;
+    color: white;
+    border-bottom: 2px solid var(--deepblue);
+    background-color: var(--deepblue-trans);
+}
+.event .row:nth-child(2) div:first-child{
+    border-right: 2px solid var(--deepblue);
+}
+.event .row:nth-child(3) div{
+    font-size: 2em;
+    font-family: monospace, sans-serif;
+    text-align: left;
+}
 /* banner */
+
 .top{
     background-color: var(--deepblue-trans);
     position: relative;
@@ -110,17 +153,18 @@ h1, h2, h3, h4{
     font-style: italic;
 }
 
-
-
-
 /* layout */
 .container-fluid{
     --bs-gutter-x:0;
 }
 /* columns for index page */
+/* left is news */
 .left, .right{
     border:0px solid pink;
     padding: 0;
+}
+.left{
+    background: repeating-linear-gradient(0deg, var(--main-bg-color) 0, var(--main-bg-color-grad) 8px, var(--main-bg-color) 15px);
 }
 
 
@@ -169,6 +213,10 @@ footer{
     }
     .news, .about, .coaches, .program, .sign-up, .information{
          margin: 0em 0em 1em 0;
+    }
+
+    .event .row:nth-child(2) div{
+        font-size: 2em;
     }
 }
     /*---- screen --- */
