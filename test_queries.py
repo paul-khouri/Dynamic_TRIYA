@@ -2,7 +2,7 @@ import sqlite3
 from db_functions import run_search_query, run_commit_query, run_search_query_tuples
 
 
-@app.after_request
+#@app.after_request
 def add_header(r):
     """
     Add headers to both force latest IE rendering engine or Chrome Frame,
@@ -47,22 +47,22 @@ def get_page_one(p):
 
 
 def get_programs(p):
-    sql = 'select name, subtitle, description, coachingfee, boathire, coachingfee+boathire ' \
-          'as "total", image from program;'
+    sql = 'select name, subtitle, content, coachingfee, boathire, coachingfee+boathire ' \
+          'as "total", image, updated_at from programs;'
     result = run_search_query(sql,p)
     return result
 
 
 def insert_member(p):
     sql = """
-    insert into member(firstname,secondname,phone,email,streetaddress,suburb,updated_at,username,password,authorisation)
+    insert into member(first_name,second_name,email,password,authorisation)
     values(?,?,?,?,?,?,date('now'),?,?,?); """
     values_tuple = ("Warren", "Smith", "021236673", "waz@gmail.com", "67 Noodle Lane", "Karori", "admin", "temp", 0)
     run_commit_query(sql, values_tuple,p)
 
 
 def get_news(p):
-    sql = "select id, header, details, content from newsitem;"
+    sql = "select news_id, title, content from news;"
     result = run_search_query(sql,p)
     return result
 
@@ -74,6 +74,7 @@ if __name__ == "__main__":
     program_data = get_programs(db_path)
     for x in program_data:
         print(x.keys())
+        print(x['updated_at'])
         print(x['total'])
     #insert_member(db_path)
     #get_news(db_path)

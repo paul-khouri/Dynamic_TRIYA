@@ -1,5 +1,6 @@
 import sqlite3
 
+
 def execute_external_script(sql_script_path, db_path):
     """Run a Query using an external .sql
 
@@ -27,10 +28,11 @@ def execute_external_script(sql_script_path, db_path):
         return False
     if conn:
         conn.close()
+        print("sqlite connection is closed")
         return True
     else:
         return False
-        #print("sqlite connection is closed")
+
 
 def run_commit_query(sql_query,values_tuple, file_path):
     """Add data to data base using sql query with question marks
@@ -71,49 +73,51 @@ def run_search_query(sql_query, file_path, rowfactory=True):
         if rowfactory:
             db.row_factory = sqlite3.Row
         cursor = db.cursor()
-        #print("connection successful")
+        print("connection successful")
         cursor.execute(sql_query)
         result = cursor.fetchall()
-        #print("Search Query executed")
+        print("Search Query executed")
         cursor.close()
     except sqlite3.Error as error:
         print("Error while creating sqlite table: {}".format(error))
     finally:
         if db:
             db.close()
-            #print("sqlite connection is closed")
+            print("sqlite connection is closed")
         if result:
             return result
 
 
-
-def run_search_query_tuples(sql_query,values_tuple, file_path):
+def run_search_query_tuples(sql_query,values_tuple, file_path,  rowfactory=True):
     """Run a Query only with tuple to go with question marks
 
     :param (str) sql_query:
     :param values_tuple : tuple
     :param (path) file_path:
+    :param (bool) rowfactory
     :return: (tuple) result
     """
     result = None
     try:
         db = sqlite3.connect(file_path)
         # will get multi dict rather than tuples, needs flask
-        db.row_factory = sqlite3.Row
+        if rowfactory:
+            db.row_factory = sqlite3.Row
         cursor = db.cursor()
-        #print("connection successful")
+        print("connection successful")
         cursor.execute(sql_query,values_tuple)
         result = cursor.fetchall()
-        #print("Search Query executed")
+        print("Search Query executed")
         cursor.close()
     except sqlite3.Error as error:
         print("Error running search query tuples: {}".format(error))
     finally:
         if db:
             db.close()
-            #print("sqlite connection is closed")
+            print("sqlite connection is closed")
         if result:
             return result
+
 
 # tests
 if __name__ == "__main__":

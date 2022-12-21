@@ -6,52 +6,26 @@ Programs and sign-up
 {% block banner %}{{ url_for('static', filename='images/banner_sail_a.png') }}{% endblock %}
 {% block content %}
 
-        <h1>Our Programs</h1>
+    <h1>Our Programs</h1>
     <div class="container-lg">
-        <div class="row align-items-center program">
-            <div class="col-md-6 ">
-                <h2>Learn to Sail</h2>
-                    <p>This is on weekdays from 4pm until 8pm</p>
-                    <p>Focuses on the basics of sailing learning how to tack, gybe, position in the boat and rigging.
-                    Currently this runs everyday after school apart from a Wednesday and is perfect for gaining
-                    confidence in and around a 420 boat. If your sailor has raced another type of boat before
-                    or are new to sailing this is the course for them.</p>
+     <div class="program button-placement">  <a class="btn btn-primary" href="">New Program</a> </div>
+        {% for row in programs %}
+        <div class="program">
+            <div class="row align-items-center {{loop.cycle('','reverse') }}">
+                 <div class="col-md-6 ">
+                     <h2> {{ row['name'] }} </h2>
+                     <p>  {{ row['subtitle'] }} </p>
+                     <p> {{ row['content'] }} </p>
+                 </div>
+                 <div class="col-md-6 {{loop.cycle('','order-first') }}">
+                     <img class="img-fluid" src="{{ url_for('static', filename='images/'+row['image']) }}" alt="">
+                 </div>
             </div>
-            <div class="col-md-6">
-                <img class="img-fluid" src="{{ url_for('static', filename='images/boats_9.png') }}" alt="">
-            </div>
-        </div>
-
-        <div class="row align-items-center program reverse">
-            <div class="col-md-6 ">
-                <h2>Teams Sailing</h2>
-                <p>Short course sailing</p>
-                <p>This is for more experienced sailors who are interested in tactics, teams
-                    racing consists of 3 boats (2 people per boat) per team and two teams,
-                    they complete in a short course race(less than 15 minutes long).
-                    The team that wins is the one that gets the most amount of boats over the line first,
-                    TRIYA is aiming to have 3 teams compete in the regionals, 1 from Wellington College,
-                    1 open team and 1 from Scots College.</p>
-            </div>
-            <div class="col-md-6 order-first">
-                <img class="img-fluid" src="{{ url_for('static', filename='images/boats_10.png') }}" alt="">
+            <div class="button-placement">
+                <a class="btn btn-primary" href="">Delete</a> <a class="btn btn-primary" href="">Update</a>
             </div>
         </div>
-
-        <div class="row align-items-center program">
-            <div class="col-md-6 ">
-                <h2>Fleet Racing</h2>
-                <p>Trapezing and kiting</p>
-                <p>This is for sailors aiming to compete in Nationals in 2023 who are
-                    graduates of one of the sailing programs offered, each boats consists of a skipper
-                    and a crew. The crew will learn how to trapeze and mange a kite, and the skipper will
-                    be in charge of steering and controls to effect the main sail.
-                    Fleet racing sails on a Saturday with training in the morning and racing in the afternoon.</p>
-            </div>
-            <div class="col-md-6">
-                <img class="img-fluid" src="{{ url_for('static', filename='images/boats_11.png') }}" alt="">
-            </div>
-        </div>
+        {%  endfor %}
     </div>
 
     <div class="container-lg">

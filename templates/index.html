@@ -16,25 +16,22 @@ TRIYA home
         </style>
 <h1>About Us</h1>
      <div class="container-lg">
+
         <div class="row main-cols">
               <!-- left column -->
             <div class="col-lg-4 left">
-                 <h2>News</h2>
-                <div class="row news">
-                    <h3> RIYA Learn to sail and sailing development starts on the first day T4. </h3>
-                     <div> WC has lined up for Mondays, Tuesdays is girls day, Wednesdays is Teams Racing,
-                         Thursdays other colleges, Fridays Scots College.
-                        However the "allocated" days are not exclusive. We will do our best to make it work for you
-                     </div>
-                    <div> Posted: 13 Aug 2022 </div>
-                </div>
-                <div class="row news">
-                    <h3> The summer program for Fleet sailing advanced </h3>
-                     <div>  The program culminates in an AON sponsored YNZ coaching clinic in Mid December this year.
-                         A new program running through to the 420 Nationals will begin in the new year.
-                     </div>
-                    <div> Posted: 13 May 2022 </div>
-                </div>
+                <h2>News</h2>
+                 {% for row in news %}
+                 <div class="news">
+                    <h3>{{ row['title'] }}</h3>
+                    <div>{{ row['content'] }}</div>
+                    <div> Posted on: {{ row['updated_at'] | news_date }}</div>
+                    <div class="button-placement">
+                            <a class="btn btn-primary" href="">Delete</a> <a class="btn btn-primary" href="">Update</a>
+                    </div>
+                 </div>
+                {% endfor %}
+            <!-- close news column div -->
             </div>
 
     <!-- right -->

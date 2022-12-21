@@ -200,6 +200,12 @@ footer{
 
 }
 
+/* logged in state */
+.button-placement{
+    text-align: right;
+    margin-top: 0.5em;
+}
+
 
 
     /*---- screen --- */
