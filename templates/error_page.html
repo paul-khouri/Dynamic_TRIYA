@@ -1,0 +1,14 @@
+{% extends "main_template.html" %}
+
+{% block title %}
+TRIYA home
+{% endblock %}
+{% block banner %}{{ url_for('static', filename='images/banner_sail_a.png') }}{% endblock %}
+{%  block content %}
+    <h1>Error page</h1>
+    <div class="container-lg">
+        <div class="white-box">
+            <h2>{{ error_message }}</h2>
+        </div>
+    </div>
+{% endblock %}

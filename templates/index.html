@@ -11,9 +11,6 @@ TRIYA home
         <p> Warren - 420 champion</p>
     </div>
 
-        <style>
-
-        </style>
 <h1>About Us</h1>
      <div class="container-lg">
 
@@ -26,10 +23,11 @@ TRIYA home
                  {% for row in news %}
                  <div class="news">
                     <h3>{{ row['title'] }}</h3>
-                    <div>{{ row['content'] }}</div>
+                    <div><p>{{ row['content'] | replace("\n", "<br>") | safe}}</p></div>
                     <div> Posted on: {{ row['updated_at'] | news_date }}</div>
                     <div class="button-placement">
-                            <a class="btn btn-primary" href="">Delete</a> <a class="btn btn-primary" href="">Update</a>
+                            <a class="btn btn-primary" href="{{ url_for('delete', id = row['news_id'], table="news", title=row['title']  )}}">Delete</a>
+                            <a class="btn btn-primary" href="{{ url_for('news_cud', news_id = row['news_id'] )}}">Update</a>
                     </div>
                  </div>
                 {% endfor %}

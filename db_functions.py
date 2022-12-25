@@ -51,11 +51,13 @@ def run_commit_query(sql_query,values_tuple, file_path):
         print("Commit Query executed")
         cursor.close()
     except sqlite3.Error as error:
-        print("Commit Error: {}".format(error))
-    finally:
-        if conn:
-            conn.close()
-            print("sqlite connection is closed")
+        error = "Commit Error: {}".format(error)
+        print(error)
+        return error
+    if conn:
+        conn.close()
+        print("sqlite connection is closed")
+        return None
 
 
 def run_search_query(sql_query, file_path, rowfactory=True):

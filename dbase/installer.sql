@@ -28,7 +28,7 @@ create table programs(
 
 create table news(
     news_id integer primary key autoincrement not null,
-    title text not null,
+    title text not null unique,
     content text not null,
     updated_at date
 );

@@ -129,7 +129,7 @@ h2, h3, h4{
     color: var(--titles);
     font-weight: bold;
 }
-.news div:nth-child(2){
+.news div > p{
     font-family: monospace, sans-serif;
 }
 .news div:nth-child(3){

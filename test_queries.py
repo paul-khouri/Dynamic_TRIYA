@@ -71,11 +71,17 @@ if __name__ == "__main__":
     db_path = 'dbase/triya_data.sqlite'
     #get_master_data(db_path)
     #get_sqlite_schema(db_path)
-    program_data = get_programs(db_path)
-    for x in program_data:
-        print(x.keys())
-        print(x['updated_at'])
-        print(x['total'])
+    # program_data = get_programs(db_path)
+    # for x in program_data:
+    #     print(x.keys())
+    #     print(x['updated_at'])
+    #     print(x['total'])
+    result = get_news(db_path)
+    for row in result:
+        for k in row.keys():
+            print(row[k])
+
+
     #insert_member(db_path)
     #get_news(db_path)
     #get_sqlite_schema(db_path)

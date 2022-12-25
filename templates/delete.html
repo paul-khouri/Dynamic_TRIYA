@@ -1,0 +1,21 @@
+{% extends "main_template.html" %}
+
+{% block title %}
+TRIYA home
+{% endblock %}
+{% block banner %}{{ url_for('static', filename='images/banner_sail_a.png') }}{% endblock %}
+{%  block content %}
+
+    <h1>Delete page</h1>
+    <div class="container-lg ">
+        <div class="white-box px-5">
+            <form action="{{ url_for('delete', item_id= id, table=table) }}" method="post">
+                <div> Do you really want to delete {{ delete_message }} ?</div>
+                <div class="text-end py-3">
+                    <a class="btn btn-primary" href="{{ request.referrer }}">Cancel</a>
+                  <button id="submit" type="submit" class="btn btn-primary" >Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

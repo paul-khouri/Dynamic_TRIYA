@@ -1,7 +1,7 @@
 {% extends "main_template.html" %}
 
 {% block title %}
-Events
+Update News Item
 {% endblock %}
 {% block banner %}{{ url_for('static', filename='images/banner_green.png') }}{% endblock %}
 
@@ -9,14 +9,14 @@ Events
         <h1>Enter or edit your news item </h1>
     <div class="container-lg">
     <div class="news">
-       <form action="" method="get">
+       <form action="{{ url_for('news_cud', news_id = news_id )}}" method="post">
        <div>
            <label for="title" class="form-label"> News Title</label>
-           <input type="text" class="form-control" id="title" name="title" placeholder="" value="" required>
+           <input type="text" class="form-control" id="title" name="title" placeholder="" value="{{ news['title'] }}" required>
        </div>
        <div>
            <label for="content" class="form-label">News Content</label>
-           <textarea class="form-control" id="content" name="content" rows="6" placeholder="" required></textarea>
+           <textarea class="form-control" id="content" name="content" rows="6" placeholder="" required>{{ news['content'] }}</textarea>
        </div>
            <div id="errormessage" class="alert"></div>
         <div class="text-end py-3">
