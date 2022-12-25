@@ -19,6 +19,18 @@ def news_date(sqlite_dt):
     return x.strftime("%a %d %b %y %H:%M")
 
 
+@app.template_filter()
+def event_date(sqlite_dt):
+    x = datetime.strptime(sqlite_dt, '%Y-%m-%d %H:%M:%S')
+    return x.strftime("%a %d %b %y")
+
+
+@app.template_filter()
+def event_time(sqlite_dt):
+    x = datetime.strptime(sqlite_dt, '%Y-%m-%d %H:%M:%S')
+    return x.strftime("%H:%M")
+
+
 @app.route("/")
 def index():
     # get news
@@ -27,17 +39,24 @@ def index():
     return render_template("index.html", news=result)
 
 
+@app.route("/news_cud/<news_id>")
+def news_cud(news_id):
+    return render_template("news_cud.html")
+
+
 @app.route("/programs")
 def programs():
     # get programs
-    sql = "select name, subtitle, content, image from programs"
+    sql = "select name, subtitle, content, image, coachingfee, boathire, coachingfee+boathire as 'total' from programs"
     result = run_search_query_tuples(sql, (), db_path)
     return render_template("programs.html", programs=result)
 
 
 @app.route("/events")
 def events():
-    return render_template("events.html")
+    sql = "select title, content, event_date from events order by event_date desc"
+    result = run_search_query_tuples(sql, (), db_path)
+    return render_template("events.html", events=result)
 
 
 @app.route("/information")

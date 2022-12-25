@@ -184,7 +184,7 @@ values('Teams'' Sailing',
 'The team that wins is the one that gets the most amount of boats over the line first,' ||
 'TRIYA is aiming to have 3 teams compete in the regionals, 1 from Wellington College,' ||
 '1 open team and 1 from Scots College.',
-190,
+170,
 0,
 'boats_10.png',
  datetime('now', '-4 months', '+200 minutes' , '-59 seconds')
@@ -199,8 +199,8 @@ values('Fleet Racing',
 'be in charge of steering and controls to effect the main sail.' ||
 'Fleet racing sails on a Saturday with training in the morning and racing in the afternoon.'
 ,
-190,
-0,
+300,
+125,
 'boats_11.png',
  datetime('now', '-4 months', '+200 minutes' , '-59 seconds')
 );

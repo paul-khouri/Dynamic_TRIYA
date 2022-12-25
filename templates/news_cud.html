@@ -1,0 +1,29 @@
+{% extends "main_template.html" %}
+
+{% block title %}
+Events
+{% endblock %}
+{% block banner %}{{ url_for('static', filename='images/banner_green.png') }}{% endblock %}
+
+{% block content %}
+        <h1>Enter or edit your news item </h1>
+    <div class="container-lg">
+    <div class="news">
+       <form action="" method="get">
+       <div>
+           <label for="title" class="form-label"> News Title</label>
+           <input type="text" class="form-control" id="title" name="title" placeholder="" value="" required>
+       </div>
+       <div>
+           <label for="content" class="form-label">News Content</label>
+           <textarea class="form-control" id="content" name="content" rows="6" placeholder="" required></textarea>
+       </div>
+           <div id="errormessage" class="alert"></div>
+        <div class="text-end py-3">
+          <button type="reset" class="btn btn-primary">Reset</button>
+          <button id="submit" type="submit" class="btn btn-primary" >Submit</button>
+        </div>
+       </form>
+        </div>
+    </div>
+{% endblock %}

@@ -34,31 +34,21 @@ Programs and sign-up
         <table class="table">
             <thead>
             <tr>
-                <th scope="col" class="text-navblue">Costs</th>
-                <th scope="col" class="text-navblue">Learn to Sail</th>
-                <th scope="col" class="text-navblue">Teams Racing</th>
-                <th scope="col" class="text-navblue">Fleet Racing</th>
+                <th>Costs</th>
+                <th>Coaching Fee</th>
+                <th>Boat Hire</th>
+                <th>Total</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row" class="text-navblue">Coaching fee</th>
-                <td>$190</td>
-                <td>$170</td>
-                <td>$300</td>
-            </tr>
-            <tr>
-                <th scope="row" class="text-navblue">Boat hire</th>
-                <td>none</td>
-                <td>none</td>
-                <td>$125</td>
-            </tr>
-            <tr>
-                <th scope="row" class="text-navblue">Total</th>
-                <td>$190</td>
-                <td>$170</td>
-                <td>$425</td>
-            </tr>
+            {% for row in programs %}
+                <tr>
+                <th>{{ row['name'] }}</th>
+                <td>{{ row['coachingfee'] | currency_format }}</td>
+                <td>{{ row['boathire'] | currency_format }}</td>
+                <td>{{ row['total'] | currency_format }}</td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
         </div>

@@ -20,6 +20,8 @@ TRIYA home
         <div class="row main-cols">
               <!-- left column -->
             <div class="col-lg-4 left">
+             <div class="event button-placement">
+                 <a class="btn btn-primary" href="{{ url_for('news_cud', news_id = 0 )}}">Add News</a> </div>
                 <h2>News</h2>
                  {% for row in news %}
                  <div class="news">

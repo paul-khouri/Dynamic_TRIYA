@@ -193,6 +193,11 @@ nav{
     background-color: white;
 }
 
+/* table */
+.table tr:nth-child(even){
+    background-color: rgb(220,220,220);
+}
+
 /* footer */
 footer{
     background-color: var(--deepblue);
@@ -205,6 +210,7 @@ footer{
     text-align: right;
     margin-top: 0.5em;
 }
+
 
 
 
