@@ -1,0 +1,50 @@
+{% extends "main_template.html" %}
+
+{% block title %}
+TRIYA home
+{% endblock %}
+{% block banner %}{{ url_for('static', filename='images/banner_sail_a.png') }}{% endblock %}
+{% block content %}
+            <h1>Enter or edit your program item </h1>
+     <div class="container-lg">
+    <div class="program">
+          <form  action="{{ url_for('program_cud', program_id = id )}}" method="POST" enctype=multipart/form-data>
+    <div>
+      <label for="program_name" class="form-label">Program Name:</label>
+      <input type="text" class="form-control" id="program_name" name="name" required value="{{form_data['name']}}">
+    </div>
+    <div>
+      <label for="short_description" class="form-label">Short Description:</label>
+      <input type="text" class="form-control" id="short_description" name="subtitle" required value="{{form_data['subtitle']}}">
+    </div>
+    <div>
+      <label for="long_description" class="form-label">Long Description</label>
+      <textarea class="form-control" id="long_description" name="content" rows="6" required>{{form_data['content']}}</textarea>
+    </div>
+    <div>
+      <label for="coaching_fee" class="form-label">Coaching Fee:</label>
+      <div class="input-group">
+        <span class="input-group-text">$</span>
+      <input type="number" class="form-control" id="coaching_fee" name="coachingfee" required value="{{form_data['coachingfee']}}">
+      </div>
+    </div>
+    <div class="mb-0">
+      <label for="boathire" class="form-label">Boat Hire:</label>
+      <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input type="number" class="form-control" id="boathire" name="boathire" required value="{{form_data['boathire']}}">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="imageupload" class="form-label">Add Image</label>
+      <input class="form-control" type="file" id="imageupload" name="file" accept=".png, .jpg,.jpeg" >
+    </div>
+    <div class="text-end">
+      <button type="reset" class="btn btn-primary">Reset</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+
+    </div>
+     </div>
+{% endblock %}

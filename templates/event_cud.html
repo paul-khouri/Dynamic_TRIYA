@@ -1,0 +1,40 @@
+{% extends "main_template.html" %}
+
+{% block title %}
+TRIYA home
+{% endblock %}
+{% block banner %}{{ url_for('static', filename='images/banner_sail_a.png') }}{% endblock %}
+{% block content %}
+            <h1>Enter or edit your news item </h1>
+    <div class="container-lg">
+    <div class="event">
+       <form action="{{ url_for('event_cud', event_id = event_id )}}" method="post">
+       <div>
+           <label for="title" class="form-label"> Event Title</label>
+           <input type="text" class="form-control" id="title" name="title" placeholder="" value="{{ event['title'] }}" required>
+       </div>
+        <div>
+            <label for="event" class="form-label"> Date and time of the event:</label>
+            <input id="event"
+                   class="form-control"
+                   type="datetime-local"
+                   name="Event Date"
+                   min="2022-01-01T00:00"
+                   max="2024-12-31T00:00"
+                   value = "{{ event['event_date'] }}"
+                   required />
+            <span class="validity"></span>
+      </div>
+       <div>
+           <label for="content" class="form-label">Event Content</label>
+           <textarea class="form-control" id="content" name="content" rows="3" placeholder="" required>{{ event['content'] }}</textarea>
+       </div>
+           <div id="errormessage" class="alert"></div>
+        <div class="text-end py-3">
+          <button type="reset" class="btn btn-primary">Reset</button>
+          <button id="submit" type="submit" class="btn btn-primary" >Submit</button>
+        </div>
+       </form>
+        </div>
+    </div>
+{% endblock %}

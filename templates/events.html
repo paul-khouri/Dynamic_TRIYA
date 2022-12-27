@@ -8,7 +8,8 @@ Events
 {% block content %}
 <h1>Our Events Calendar</h1>
     <div class="container-lg">
-        <div class="event button-placement">  <a class="btn btn-primary" href="">Add new event</a> </div>
+        <div class="event button-placement">  <a class="btn btn-primary" href="{{ url_for('event_cud', event_id = 0 )}}">Add new event</a> </div>
+        {%  if events %}
         {% for row in events %}
          <div class="event">
             <div class="row">
@@ -22,9 +23,11 @@ Events
                 <div class="col-12"> {{ row['content'] }}.</div>
             </div>
             <div class="button-placement">
-                <a class="btn btn-primary" href="">Delete</a> <a class="btn btn-primary" href="">Update</a>
+                <a class="btn btn-primary" href="{{ url_for('delete', id = row['event_id'], table="event", title=row['title']  )}}">Delete</a>
+                <a class="btn btn-primary" href="{{ url_for('event_cud', event_id = row['event_id'] )}}">Update</a>
             </div>
         </div>
         {% endfor %}
+    {% endif %}
     </div>
 {% endblock %}

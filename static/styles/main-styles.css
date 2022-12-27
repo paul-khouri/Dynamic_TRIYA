@@ -172,6 +172,11 @@ h2, h3, h4{
 .trans{
     opacity: 0.5;
 }
+.img-fluid{
+    max-height: 400px;
+   display: block;
+    margin: auto;
+}
 
 /* navigation */
 nav{
@@ -187,6 +192,14 @@ nav{
     color:red;
     font-size: 1.5em;
     text-align: center;
+}
+/* delete page */
+.delete{
+    font-size: 2em;
+    text-align: center;
+}
+.delete span{
+    text-decoration: underline;
 }
 
 .white-box{

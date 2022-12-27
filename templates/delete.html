@@ -9,8 +9,8 @@ TRIYA home
     <h1>Delete page</h1>
     <div class="container-lg ">
         <div class="white-box px-5">
-            <form action="{{ url_for('delete', item_id= id, table=table) }}" method="post">
-                <div> Do you really want to delete {{ delete_message }} ?</div>
+            <form action="{{ url_for('delete', id= id, table=table, title=delete_message) }}" method="post">
+                <div class="delete"> Do you really want to delete:<br> <span>{{ delete_message }}</span> ?</div>
                 <div class="text-end py-3">
                     <a class="btn btn-primary" href="{{ request.referrer }}">Cancel</a>
                   <button id="submit" type="submit" class="btn btn-primary" >Delete</button>

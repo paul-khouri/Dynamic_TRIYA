@@ -4,18 +4,18 @@
 Database creation script
 */
 /* destroy all tables */
-drop table if exists programs;
+drop table if exists program;
 drop table if exists program_coaches;
-drop table if exists coaches;
-drop table if exists members;
+drop table if exists coach;
+drop table if exists member;
 drop table if exists comment;
 drop table if exists news;
-drop table if exists events;
+drop table if exists event;
 
 /* enable foreign key constraint */
 pragma foreign_keys = on;
 
-create table programs(
+create table program(
     program_id integer primary key autoincrement not null,
     name text not null unique,
     subtitle text not null unique,
@@ -33,7 +33,7 @@ create table news(
     updated_at date
 );
 
-create table members(
+create table member(
     member_id integer primary key autoincrement not null,
     first_name text not null,
     second_name text not null,
@@ -42,7 +42,7 @@ create table members(
     authorisation integer not null
 );
 
-create table events(
+create table event(
     event_id integer primary key autoincrement not null,
     title text not null unique,
     content text not null,
@@ -50,21 +50,21 @@ create table events(
 );
 
 /* events */
-insert into events(title, content, event_date)
+insert into event(title, content, event_date)
 values(
        'AON 420 clinic at Evans Bay',
        'Runs over 3 days.',
        '2022-12-18 08:30:00'
        );
 
-insert into events(title, content, event_date)
+insert into event(title, content, event_date)
 values(
        'Evans Bay Regatta',
        'Runs over 3 days.',
        '2023-02-18 08:30:00'
        );
 
-insert into events(title, content, event_date)
+insert into event(title, content, event_date)
 values(
        '420 Nationals at Naval Point in ChCh',
        'Runs over 2 days.',
@@ -74,42 +74,42 @@ values(
 
 
 /* members */
-insert into members(first_name, second_name, email, password, authorisation)
+insert into member(first_name, second_name, email, password, authorisation)
 values(
        'Bri' , 'Monatana', 'bm@gmail.com', 'temp',1
       );
 
-insert into members(first_name, second_name, email, password, authorisation)
+insert into member(first_name, second_name, email, password, authorisation)
 values(
        'Darby' , 'Jones', 'dj@gmail.com', 'temp', 1
       );
 
-insert into members(first_name, second_name, email, password, authorisation)
+insert into member(first_name, second_name, email, password, authorisation)
 values(
        'Locky' , 'Johanson', 'lj@gmail.com', 'temp',1
       );
 
-insert into members(first_name, second_name, email, password, authorisation)
+insert into member(first_name, second_name, email, password, authorisation)
 values(
        'Warren' , 'Perez', 'wp@gmail.com', 'temp',0
       );
 
-insert into members(first_name, second_name, email, password, authorisation)
+insert into member(first_name, second_name, email, password, authorisation)
 values(
        'Finn' , 'Reilly', 'fr@gmail.com', 'temp',1
       );
 
-insert into members(first_name, second_name, email, password,authorisation)
+insert into member(first_name, second_name, email, password,authorisation)
 values(
        'Helena' , 'Constantine', 'hc@gmail.com', 'temp',1
       );
 
-insert into members(first_name, second_name, email, password, authorisation)
+insert into member(first_name, second_name, email, password, authorisation)
 values(
        'Daniel' , 'Liebovitz', 'dl@gmail.com', 'temp',1
       );
 
-insert into members(first_name, second_name, email, password, authorisation)
+insert into member(first_name, second_name, email, password, authorisation)
 values(
        'Andy' , 'Twoombly', 'at@gmail.com', 'temp',1
       );
@@ -162,7 +162,7 @@ values('TRIYA Winter Programme',
 /* Programs */
 
 
-insert into programs(name, subtitle, content, coachingfee, boathire,image,updated_at)
+insert into program(name, subtitle, content, coachingfee, boathire,image,updated_at)
 values('Learn to Sail',
 'This is on weekdays from 4pm until 8pm',
 'Focuses on the basics of sailing learning how to tack, gybe, position in the boat and ' ||
@@ -175,7 +175,7 @@ values('Learn to Sail',
  datetime('now', '-1 months', '+200 minutes' , '-59 seconds')
 );
 
-insert into programs(name, subtitle, content, coachingfee, boathire,image,updated_at)
+insert into program(name, subtitle, content, coachingfee, boathire,image,updated_at)
 values('Teams'' Sailing',
 'Short course sailing',
 'This is for more experienced sailors who are interested in tactics, teams' ||
@@ -190,7 +190,7 @@ values('Teams'' Sailing',
  datetime('now', '-4 months', '+200 minutes' , '-59 seconds')
 );
 
-insert into programs(name, subtitle, content, coachingfee, boathire,image,updated_at)
+insert into program(name, subtitle, content, coachingfee, boathire,image,updated_at)
 values('Fleet Racing',
 'Trapezing and kiting',
 'This is for sailors aiming to compete in Nationals in 2023 who are' ||

@@ -8,24 +8,27 @@ Programs and sign-up
 
     <h1>Our Programs</h1>
     <div class="container-lg">
-     <div class="program button-placement">  <a class="btn btn-primary" href="">New Program</a> </div>
+     <div class="program button-placement">  <a class="btn btn-primary" href="{{ url_for('program_cud', program_id = 0 )}}">New Program</a> </div>
+    {% if programs %}
         {% for row in programs %}
         <div class="program">
             <div class="row align-items-center {{loop.cycle('','reverse') }}">
                  <div class="col-md-6 ">
                      <h2> {{ row['name'] }} </h2>
                      <p>  {{ row['subtitle'] }} </p>
-                     <p> {{ row['content'] }} </p>
+                     <p> {{ row['content'] | replace("\n", "<br>") | safe}} </p>
                  </div>
                  <div class="col-md-6 {{loop.cycle('','order-first') }}">
                      <img class="img-fluid" src="{{ url_for('static', filename='images/'+row['image']) }}" alt="">
                  </div>
             </div>
             <div class="button-placement">
-                <a class="btn btn-primary" href="">Delete</a> <a class="btn btn-primary" href="">Update</a>
+                <a class="btn btn-primary" href="{{ url_for('delete', id = row['program_id'], table="program", title=row['name']  )}}">Delete</a>
+                <a class="btn btn-primary" href="{{ url_for('program_cud', program_id = row['program_id'] )}}">Update</a>
             </div>
         </div>
         {%  endfor %}
+    {% endif %}
     </div>
 
     <div class="container-lg">
@@ -41,6 +44,7 @@ Programs and sign-up
             </tr>
             </thead>
             <tbody>
+             {% if programs %}
             {% for row in programs %}
                 <tr>
                 <th>{{ row['name'] }}</th>
@@ -49,6 +53,7 @@ Programs and sign-up
                 <td>{{ row['total'] | currency_format }}</td>
                 </tr>
             {% endfor %}
+            {% endif %}
             </tbody>
         </table>
         </div>

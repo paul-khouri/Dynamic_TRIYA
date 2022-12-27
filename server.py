@@ -5,6 +5,8 @@ import os
 
 app = Flask(__name__)
 db_path = 'dbase/triya_data.sqlite'
+UPLOAD_FOLDER = 'static/images'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 @app.template_filter()
@@ -36,6 +38,7 @@ def index():
     # get news
     sql = "select news_id, title, content, updated_at from news order by updated_at desc"
     result = run_search_query_tuples(sql, (), db_path)
+    print(result)
     return render_template("index.html", news=result)
 
 
@@ -58,7 +61,7 @@ def news_cud(news_id):
         if news_id == "0":
             sql = "insert into news (title, content, updated_at) values(?,?, datetime('now'))"
             values_tuple = (f['title'], f['content'])
-            outcome = run_commit_query(sql,values_tuple, db_path)
+            outcome = run_commit_query(sql, values_tuple, db_path)
         else:
             # update current post
             sql = "update news set title=? , content=?, updated_at=datetime('now') where news_id=?"
@@ -77,7 +80,7 @@ def news_cud(news_id):
             # run query again to get the news item
             sql = "select title, content, updated_at from news where news_id = ?"
             values_tuple = (news_id,)
-            result = run_search_query_tuples(sql, values_tuple,db_path)
+            result = run_search_query_tuples(sql, values_tuple, db_path)
             if result is None:
                 e_m = "Oops, we could not find a result"
                 return render_template("error_page.html", error_message=e_m)
@@ -87,19 +90,104 @@ def news_cud(news_id):
         return "Error on News GET POST"
 
 
-@app.route("/programs")
-def programs():
+@app.route("/program")
+def program():
     # get programs
-    sql = "select name, subtitle, content, image, coachingfee, boathire, coachingfee+boathire as 'total' from programs"
+    sql = "select program_id, name, subtitle, content, image, coachingfee, boathire, coachingfee+boathire as 'total' from program"
     result = run_search_query_tuples(sql, (), db_path)
+    print(result)
     return render_template("programs.html", programs=result)
 
 
-@app.route("/events")
-def events():
-    sql = "select title, content, event_date from events order by event_date desc"
+@app.route("/program_cud/<program_id>", methods=["GET", "POST"])
+def program_cud(program_id):
+    empty_program = {
+        'name': "",
+        'subtitle': "",
+        'content' : "",
+        'coachingfee': "0",
+        'boathire': "0"
+
+    }
+    if request.method == "POST":
+        f = request.form
+        # special request for image file
+        g = request.files['file']
+        if program_id == "0":
+            sql = "insert into program(name, subtitle, content, coachingfee, boathire, image)" \
+                  " values(?,?,?,?,?,? )"
+            values_tuple = (f['name'], f['subtitle'], f['content'], f['coachingfee'], f['boathire'],'placeholder.png')
+            outcome = run_commit_query(sql, values_tuple, db_path)
+        else:
+            sql = "update program set name=?, subtitle=?, content=?, coachingfee=?, boathire=? where program_id = ?"
+            values_tuple = (f['name'], f['subtitle'], f['content'], f['coachingfee'], f['boathire'], program_id)
+            outcome = run_commit_query(sql, values_tuple, db_path)
+            if g.filename != "":
+                if g.content_type in ["image/jpeg", "image/png"]:
+                    g.save(os.path.join(app.config['UPLOAD_FOLDER'], g.filename))
+                    size = os.stat(os.path.join(app.config['UPLOAD_FOLDER'], g.filename)).st_size
+                    print(size)
+                    sql = "update program set image = ? where program_id = ?"
+                    values_tuple = (g.filename,program_id)
+                    outcome = run_commit_query(sql, values_tuple, db_path)
+        if outcome is not None:
+            return render_template("error_page.html", error_message=outcome)
+        else:
+            return redirect(url_for('program'))
+    elif request.method == "GET":
+        if program_id == "0":
+            return render_template("program_cud.html", id=program_id, form_data=empty_program)
+        else:
+            sql = "select name, subtitle, content, coachingfee, boathire from program where program_id=?"
+            values_tuple = (program_id,)
+            result = run_search_query_tuples(sql, values_tuple, db_path)
+            if result is None:
+                e_m = "Oops, we could not find a result"
+                return render_template("error_page.html", error_message=e_m)
+            else:
+                return render_template("program_cud.html", id=program_id, form_data=result[0])
+
+
+@app.route("/event")
+def event():
+    sql = "select event_id, title, content, event_date from event order by event_date desc"
     result = run_search_query_tuples(sql, (), db_path)
     return render_template("events.html", events=result)
+
+
+@app.route("/event_cud/<event_id>", methods=["GET", "POST"])
+def event_cud(event_id):
+    empty_event = {
+        'title': "Racing event",
+        'content': "Bring your boat",
+        'event_date': '2022-12-07T16:12'
+    }
+    if request.method == "POST":
+        f = request.form
+        sqlite_date = f['Event Date'].replace("T", " ")+":00"
+        if event_id == "0":
+            sql = "insert into event(title, content, event_date) values(?,?,?)"
+            values_tuple = (f['title'], f['content'], sqlite_date)
+            outcome = run_commit_query(sql, values_tuple, db_path)
+        else:
+            sql = "update event set title=? , content=?, event_date=?  where event_id=?"
+            values_tuple = (f['title'], f['content'], sqlite_date, event_id)
+            outcome = run_commit_query(sql, values_tuple, db_path)
+        if outcome is not None:
+            return render_template("error_page.html", error_message=outcome)
+        else:
+            return redirect(url_for('event'))
+    elif request.method == "GET":
+        if event_id == "0":
+            return render_template("event_cud.html", event=empty_event, event_id=event_id)
+        else:
+            sql = "select title, content, event_date from event where event_id = ?"
+            values_tuple = (event_id,)
+            result = run_search_query_tuples(sql, values_tuple, db_path)
+            if result is None:
+                e_m = "Oops, we could not find a result"
+                return render_template("error_page.html", error_message=e_m)
+            return render_template("event_cud.html", event_id=event_id, event=result[0])
 
 
 @app.route("/information")
@@ -109,24 +197,32 @@ def information():
 
 @app.route("/delete", methods=["GET", "POST"])
 def delete():
-    if request.method == "GET":
-        description = request.args
-        print(description.keys())
-        expected_keys = ['id', 'table', 'title']
-        have_keys = True
-        for k in expected_keys:
-            if k not in description.keys():
-                have_keys = False
-                return render_template("error_page.html",
-                                       error_message="Do not have the required information to delete the item")
-        return render_template("delete.html", id =description['id'],
+    description = request.args
+    print(description.keys())
+    expected_keys = ['id', 'table', 'title']
+    for k in expected_keys:
+        if k not in description.keys():
+            return render_template("error_page.html",
+                                   error_message="Do not have the required information to delete the item")
+    if request.method == "POST":
+        id_name = description['table']+"_id"
+        sql = "delete from {} where {}=?".format(description['table'], id_name)
+        values_tuple = (description['id'],)
+        outcome = run_commit_query(sql, values_tuple, db_path)
+        if outcome is not None:
+            e_m = "Oops, it looks like something went wrong and the post was not deleted"
+            return render_template("error_page.html", error_message=e_m)
+        else:
+            if description['table'] == "event":
+                return redirect(url_for('event'))
+            elif description['table'] == "program":
+                return redirect(url_for('program'))
+            else:
+                return redirect(url_for('index'))
+    elif request.method == "GET":
+        return render_template("delete.html", id=description['id'],
                                table=description['table'],
-                               delete_message=description['title'] )
-
-
-
-
-
+                               delete_message=description['title'])
 
 
 if __name__ == "__main__":
