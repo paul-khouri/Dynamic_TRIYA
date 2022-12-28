@@ -36,15 +36,81 @@ TRIYA home
       </div>
     </div>
     <div class="mb-3">
-      <label for="imageupload" class="form-label">Add Image</label>
+      <label for="imageupload" class="form-label">Add Image (leave unselected to keep current image)</label>
       <input class="form-control" type="file" id="imageupload" name="file" accept=".png, .jpg,.jpeg" >
     </div>
+              <div class="preview">
+                  <p> Not files currently selected</p>
+              </div>
     <div class="text-end">
-      <button type="reset" class="btn btn-primary">Reset</button>
+      <button id="reset" type="reset" class="btn btn-primary">Reset</button>
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
   </form>
 
     </div>
      </div>
+    <script>
+
+   const input = document.querySelector("#imageupload")
+   const preview = document.querySelector(".preview")
+   const my_reset = document.querySelector("#reset")
+
+    input.addEventListener('change', imagedisplay)
+   my_reset.addEventListener('mouseup', reset)
+
+
+
+
+   my_img = new Image();
+   my_img.src = "{{ url_for('static', filename='images/'+form_data['image']) }}"
+   my_img.addEventListener('load', loading)
+    function loading(){
+       input.value=""
+        imagedisplay()
+    }
+    //window.onload = loading
+
+   function reset(){
+       input.value=""
+       imagedisplay()
+   }
+
+    function imagedisplay(){
+        console.log("changed")
+        let all_files = input.files;
+        image_file = all_files[0];
+        //remove preview <p> so it can be re written
+        while(preview.firstChild){
+            preview.removeChild(preview.firstChild)
+
+        }
+
+         const para = document.createElement('p')
+         const image = document.createElement('img')
+        if(all_files.length === 0){
+            para.textContent = "Your current image is below"
+            preview.appendChild(para)
+            image.src=my_img.src
+            console.log(image)
+            image.style.maxWidth = "300px";
+            preview.append(image)
+
+        }else{
+            para.textContent = `${image_file.name}, File size: ${image_file.size}. `
+            if(image_file.size > 20){
+                para.textContent += "Your file is very large and will take ages and ages to upload"
+            }
+            preview.appendChild(para)
+            const image = document.createElement('img')
+            image.src = URL.createObjectURL(image_file)
+            console.log(image)
+            image.style.maxWidth = "300px";
+            preview.append(image)
+        }
+
+
+
+    }
+    </script>
 {% endblock %}

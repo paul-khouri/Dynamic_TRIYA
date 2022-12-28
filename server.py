@@ -33,6 +33,18 @@ def event_time(sqlite_dt):
     return x.strftime("%H:%M")
 
 
+@app.route("/log_in")
+def log_in():
+    return None
+
+
+@app.route("/log_out")
+def log_out():
+    return None
+
+
+
+
 @app.route("/")
 def index():
     # get news
@@ -138,7 +150,7 @@ def program_cud(program_id):
         if program_id == "0":
             return render_template("program_cud.html", id=program_id, form_data=empty_program)
         else:
-            sql = "select name, subtitle, content, coachingfee, boathire from program where program_id=?"
+            sql = "select name, subtitle, content, coachingfee, boathire, image from program where program_id=?"
             values_tuple = (program_id,)
             result = run_search_query_tuples(sql, values_tuple, db_path)
             if result is None:
