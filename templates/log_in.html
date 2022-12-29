@@ -1,0 +1,29 @@
+{% extends "main_template.html" %}
+
+{% block title %}
+TRIYA home
+{% endblock %}
+{% block banner %}{{ url_for('static', filename='images/banner_sail_b.png') }}{% endblock %}
+{% block content %}
+    <h1> Log in</h1>
+    <div class="container-lg">
+    <div class="sign-up">
+         <form action="{{ url_for('log_in')}}" method="post">
+         <div>
+           <label for="email" class="form-label"> Email</label>
+           <input type="email" class="form-control" id="email" name="email" placeholder="" value="wp@gmail.com" required>
+       </div>
+         <div>
+           <label for="password" class="form-label"> Password</label>
+           <input type="password" class="form-control" id="password" name="password" placeholder="" value="temp" required>
+       </div>
+             <div class="alert">{{ error }}</div>
+         <div class="text-end py-3">
+          <button type="reset" class="btn btn-primary">Reset</button>
+          <button id="submit" type="submit" class="btn btn-primary" >Submit</button>
+        </div>
+         </form>
+    </div>
+    </div>
+
+{% endblock %}

@@ -179,12 +179,39 @@ h2, h3, h4{
 }
 
 /* navigation */
-nav{
-    background-color: var(--deepblue);
+
+
+.navbar{
+    background-color:  var(--deepblue);
+    border-bottom: 1px solid black;
+}
+
+.nav-link{
+    font-size: 1em;
     color:white;
 }
-.nav-link{
+.nav-item:hover{
+    background-color: var(--titles-trans) ;
+    color: var(--deepblue);
+}
+.nav-link:hover{
+    color: white;
+}
+.btn-outline{
+    border: 1px solid white;
+    padding: 0.25em 1em;
+}
+.btn-outline:hover{
+    background-color:var(--titles-trans);
+
+}
+/* session */
+.session-info{
+    background-color: var(--deepblue);
     color:white;
+    font-size: 0.75em;
+    text-align: right;
+    padding-right: 1em;
 }
 
 /* form */

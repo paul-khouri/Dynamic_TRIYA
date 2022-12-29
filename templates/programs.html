@@ -8,7 +8,11 @@ Programs and sign-up
 
     <h1>Our Programs</h1>
     <div class="container-lg">
+
+    {% if session['authorisation'] == 0 %}
      <div class="program button-placement">  <a class="btn btn-primary" href="{{ url_for('program_cud', program_id = 0 )}}">New Program</a> </div>
+    {% endif %}
+
     {% if programs %}
         {% for row in programs %}
         <div class="program">
@@ -22,10 +26,12 @@ Programs and sign-up
                      <img class="img-fluid" src="{{ url_for('static', filename='images/'+row['image']) }}" alt="">
                  </div>
             </div>
+        {% if session['authorisation'] == 0 %}
             <div class="button-placement">
                 <a class="btn btn-primary" href="{{ url_for('delete', id = row['program_id'], table="program", title=row['name']  )}}">Delete</a>
                 <a class="btn btn-primary" href="{{ url_for('program_cud', program_id = row['program_id'] )}}">Update</a>
             </div>
+        {% endif %}
         </div>
         {%  endfor %}
     {% endif %}

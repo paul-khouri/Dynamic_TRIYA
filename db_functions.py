@@ -54,6 +54,10 @@ def run_commit_query(sql_query,values_tuple, file_path):
         error = "Commit Error: {}".format(error)
         print(error)
         return error
+    except IOError as error:
+        error = "IO Error: {}".format(error)
+        print(error)
+        return error
     if conn:
         conn.close()
         print("sqlite connection is closed")

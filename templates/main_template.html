@@ -12,33 +12,7 @@
 </head>
 <body>
 <style>
-    .navbar{
-    background-color:  var(--deepblue);
-    border-bottom: 1px solid black;
-}
-.nav-item{
 
-}
-.nav-link{
-    font-size: 1em;
-    color:white;
-}
-.nav-item:hover{
-    background-color: var(--titles-trans) ;
-    color: var(--deepblue);
-}
-.nav-link:hover{
-    color: white;
-
-}
-.btn-outline{
-    border: 1px solid white;
-    padding: 0.25em 1em;
-}
-.btn-outline:hover{
-    background-color:var(--titles-trans);
-
-}
 </style>
     <div class="container-fluid white-box">
         <nav class="navbar navbar-expand-md d-flex navbar-dark px-2">
@@ -67,11 +41,19 @@
                     </li>
                 </ul>
                 <div>
-                    <a href="" class="nav-link btn btn-outline">Log in</a>
+                    {% if session %}
+                         <a href="{{ url_for('log_out') }}" class="nav-link btn btn-outline">Log out</a>
+                        {% else %}
+                         <a href="{{ url_for('log_in') }}" class="nav-link btn btn-outline">Log in</a>
+                    {% endif %}
                 </div>
     </div>
-
         </nav>
+        {%  if session %}
+            <div class="session-info">
+               You are logged in as: {{ session['first_name'] }}, {{ session['info']  }}
+            </div>
+        {% endif %}
         <div class="top">
             <img class="img-fluid" src="{% block banner %}{% endblock %}" alt="Banner Image">
             <div class="top-text">TRIYA Wellington Sailing School </div>

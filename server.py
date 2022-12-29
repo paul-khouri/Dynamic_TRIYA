@@ -7,6 +7,7 @@ app = Flask(__name__)
 db_path = 'dbase/triya_data.sqlite'
 UPLOAD_FOLDER = 'static/images'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.secret_key = "sgdjkdgjdfgkdjfgk"
 
 
 @app.template_filter()
@@ -33,14 +34,45 @@ def event_time(sqlite_dt):
     return x.strftime("%H:%M")
 
 
-@app.route("/log_in")
+@app.route("/log_in", methods=["GET", "POST"])
 def log_in():
-    return None
+    if request.method == "POST":
+        # select user, password and authorisation using form user email
+        f = request.form
+
+        sql = "select first_name , email, password, authorisation from member where email=?"
+        values_tuple = (f['email'],)
+        result = run_search_query_tuples(sql, values_tuple, db_path)
+        # want one result
+        if result:
+            result = result[0]
+            # test against form values
+            if result['password'] == f['password']:
+                # if okay, start session with username and authorisation
+                print("user is correct")
+                session['first_name'] = result['first_name']
+                session['authorisation'] = result['authorisation']
+                if session['authorisation'] == 0:
+                    session['info'] = "You have full access"
+                else:
+                    session['info'] = "You do not have full access"
+                return redirect(url_for('index'))
+            else:
+                # respond
+                error = "Your details do not appear to be correct"
+                return render_template("log_in.html", error=error)
+        else:
+            # respond
+            error = "Your details do not appear to be correct"
+            return render_template("log_in.html", error = error)
+    elif request.method == "GET":
+        return render_template("log_in.html")
 
 
 @app.route("/log_out")
 def log_out():
-    return None
+    session.clear()
+    return redirect(url_for('index'))
 
 
 
