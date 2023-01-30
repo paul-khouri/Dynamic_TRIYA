@@ -1,0 +1,18 @@
+{% extends "main_template.html" %}
+
+{% block title %}
+Installer Page
+{% endblock %}
+{% block banner %}{{ url_for('static', filename='images/banner_green.png') }}{% endblock %}
+
+{% block content %}
+    <h1>{{ title }} </h1>
+     <div class="container-lg">
+    <h2 class="text-center">{{ message }}</h2>
+    <form action="{{ url_for('installer') }}" method="post">
+    <div class="text-end py-3">
+      <button id="submit" type="submit" class="btn btn-primary" >Install</button>
+        </div>
+    </form>
+     </div>
+{% endblock %}

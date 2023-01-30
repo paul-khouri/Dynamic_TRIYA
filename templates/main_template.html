@@ -51,7 +51,7 @@
         </nav>
         {%  if session %}
             <div class="session-info">
-               You are logged in as: {{ session['first_name'] }}, {{ session['info']  }}
+               You are logged in as: {{ session['first_name'] }}, {{ session['info']  }} <a href="{{ url_for('installer') }}" >Re install db</a>
             </div>
         {% endif %}
         <div class="top">

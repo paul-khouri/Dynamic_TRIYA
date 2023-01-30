@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from db_functions import run_search_query, run_search_query_tuples, run_commit_query
+from db_functions import execute_external_script, run_search_query_tuples, run_commit_query
 from datetime import datetime
 import os
 
 app = Flask(__name__)
 db_path = 'dbase/triya_data.sqlite'
+sql_script_path = 'dbase/installer.sql'
 UPLOAD_FOLDER = 'static/images'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "sgdjkdgjdfgkdjfgk"
@@ -150,7 +151,8 @@ def program_cud(program_id):
         'subtitle': "",
         'content' : "",
         'coachingfee': "0",
-        'boathire': "0"
+        'boathire': "0",
+        'image': "placeholder.png"
 
     }
     if request.method == "POST":
@@ -267,6 +269,19 @@ def delete():
         return render_template("delete.html", id=description['id'],
                                table=description['table'],
                                delete_message=description['title'])
+
+
+@app.route("/installer", methods=["GET", "POST"])
+def installer():
+    if request.method == "POST":
+        result = execute_external_script(sql_script_path, db_path)
+        title = "Done"
+        message = "Database has been rebuilt ({})".format(result)
+        return render_template("installer.html", title=title, message=message)
+    elif request.method == "GET":
+        title = "Alert!!!"
+        message = "Pressing the install button will destroy the database and create a new one"
+        return render_template("installer.html", title=title, message=message)
 
 
 if __name__ == "__main__":
